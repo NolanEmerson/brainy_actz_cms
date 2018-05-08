@@ -1,8 +1,9 @@
 	import React, { Component } from 'react';
-	import Header from './Header';
-	import base from '../base';
-
 	import {BrowserRouter as Router, Route} from 'react-router-dom';
+
+	import Location from './Location';
+	import Screen from './Screen';
+	import base from '../base';
 
 	class App extends Component {
 	constructor(props){
@@ -38,7 +39,10 @@
 
 		return (
 		<Router>
-			<Route exact path='/' component={Location} />
+			<React.Fragment>
+				<Route exact path='/' component={Location} />
+				<Route path='/screen' component={Screen} />
+			</React.Fragment>
 		</Router>
 		);
 	}
