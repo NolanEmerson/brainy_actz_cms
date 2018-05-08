@@ -1,41 +1,41 @@
 import React, {Component} from 'react';
 import base from '../base';
 
-class Screen extends Component {
+class Landing extends Component {
     constructor(props){
         super(props);
         
         this.state = {
-            ScreenNames: []
+            locationNames: []
         }
     }
 
     componentDidMount() {
 		base.fetch(`/locations`, { context: this }).then( response => {
-		console.log('Screen response: ', response);
-		this.setupScreens(response['Irvine, CA']);
+		console.log('Response: ', response);
+		this.setupLocations(response);
 		});
 	}
 
-	setupScreens(Screens) {
-		const ScreenNames = Object.keys(Screens);
+	setupLocations(locations) {
+		const locationNames = Object.keys(locations);
 
 		this.setState({
-		ScreenNames
+		locationNames
 		});
 	}
 
     render() {
-        const ScreenMap = this.state.ScreenNames.map( (item, index) => {
+        const locationMap = this.state.locationNames.map( (item, index) => {
             return <div key={index}>{item}</div>
         });
 
         return (
             <div>
-                {ScreenMap}
+                {locationMap}
             </div>
         );
     }
 }
 
-export default Screen;
+export default Landing;
