@@ -1,11 +1,8 @@
 import Rebase from 're-base';
 import firebase from 'firebase';
+import config from './config';
 
-const firebaseApp = firebase.initializeApp({
-        apiKey: "AIzaSyCgFIxbvNRllAvJ_zApzwY9GrhlgWeCkLk",
-        authDomain: "brainy-actz-cms.firebaseapp.com",
-        databaseURL: "https://brainy-actz-cms.firebaseio.com"
-});
+const firebaseApp = firebase.initializeApp(config);
 
 const base = Rebase.createClass(firebaseApp.database());
 
