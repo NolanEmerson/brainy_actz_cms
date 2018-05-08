@@ -1,46 +1,47 @@
-import React, { Component } from 'react';
-import Header from './Header';
-import base from '../base';
+	import React, { Component } from 'react';
+	import Header from './Header';
+	import base from '../base';
 
-class App extends Component {
-  constructor(props){
-    super(props);
+	import {BrowserRouter as Router, Route} from 'react-router-dom';
 
-    this.state = {
-      locationNames: []
-    }
-  }
+	class App extends Component {
+	constructor(props){
+		super(props);
 
-  componentDidMount() {
-    base.fetch(`/locations`, { context: this }).then( response => {
-      console.log('Response: ', response);
-      this.setupLocations(response);
-    });
-    // console.log(this.props);
-    // this.ref = base.syncState()
-  }
+		this.state = {
+		locationNames: []
+		}
+	}
 
-  setupLocations(locations) {
-    const locationNames = Object.keys(locations);
+	componentDidMount() {
+		base.fetch(`/locations`, { context: this }).then( response => {
+		console.log('Response: ', response);
+		this.setupLocations(response);
+		});
+		// console.log(this.props);
+		// this.ref = base.syncState()
+	}
 
-    this.setState({
-      locationNames
-    });
-  }
+	setupLocations(locations) {
+		const locationNames = Object.keys(locations);
 
-  render() {
+		this.setState({
+		locationNames
+		});
+	}
 
-    const locationMap = this.state.locationNames.map( (item, index) => {
-      return <div>{item}</div>
-    });
+	render() {
 
-    return (
-      <div className='mainContainer'>
-        <Header />
-        {locationMap}
-      </div>
-    );
-  }
-}
+		const locationMap = this.state.locationNames.map( (item, index) => {
+		return <div>{item}</div>
+		});
 
-export default App;
+		return (
+		<Router>
+			<Route exact path='/' component={Location} />
+		</Router>
+		);
+	}
+	}
+
+	export default App;
