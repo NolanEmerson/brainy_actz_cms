@@ -6,33 +6,33 @@ class Location extends Component {
         super(props);
         
         this.state = {
-            locationNames: []
+            wallNames: []
         }
     }
 
     componentDidMount() {
 		base.fetch(`/locations`, { context: this }).then( response => {
-		console.log('Response: ', response);
-		this.setupLocations(response);
+		console.log('Wall response: ', response);
+		this.setupWalls(response['Irvine, CA']);
 		});
 	}
 
-	setupLocations(locations) {
-		const locationNames = Object.keys(locations);
+	setupWalls(walls) {
+		const wallNames = Object.keys(walls);
 
 		this.setState({
-		locationNames
+		wallNames
 		});
 	}
 
     render() {
-        const locationMap = this.state.locationNames.map( (item, index) => {
+        const wallMap = this.state.wallNames.map( (item, index) => {
             return <div key={index}>{item}</div>
         });
 
         return (
             <div>
-                {locationMap}
+                {wallMap}
             </div>
         );
     }
