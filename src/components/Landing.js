@@ -8,12 +8,12 @@ class Landing extends Component {
         super(props);
         
         this.moveToLocation = this.moveToLocation.bind(this);
-        this.editInput = this.editInput.bind(this);
-        this.addItem = this.addItem.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.addNewLocation = this.addNewLocation.bind(this);
 
         this.state = {
             locationNames: {},
-            newItem: ''
+            newLocation: ''
         }
     }
 
@@ -34,22 +34,43 @@ class Landing extends Component {
         this.props.history.push(`/${item}`);
     }
 
-    addItem(e) {
-
-        const {newItem} = this.state
+    addNewLocation(e) {
 
         e.preventDefault();
+
+        let {newLocation} = this.state
+
+        let inputObject = {
+            location_name: newLocation,
+            walls: {
+                lobby: {
+                    current_view: '',
+                    options: [
+                        'red',
+                        'green',
+                        'blue'
+                    ]
+                },
+                room: {
+                    current_view: '',
+                    options: [
+                        'red',
+                        'green',
+                        'blue'
+                    ]
+                }
+            }
+        }
+
         this.setState({
-            locationNames: {
-                newItem
-            },
-            newItem: ''
+            newLocation: ''
         });
+        base.push('/locations', {data: inputObject});
     }
 
-    editInput(e) {
+    handleInputChange(e) {
         this.setState({
-            newItem: e.target.value
+            newLocation: e.target.value
         })
     }
 
@@ -62,8 +83,8 @@ class Landing extends Component {
             <React.Fragment>
                 <Header nav={this.props} />
                 {locationMap}
-                <form onSubmit={this.addItem}>
-                    <input type="text" value={this.state.newItem} onChange={this.editInput} placeholder='New location name' />
+                <form onSubmit={this.addNewLocation}>
+                    <input type="text" value={this.state.newLocation} onChange={this.handleInputChange} placeholder='New location name' />
                     <button>Add location</button>
                 </form>
             </React.Fragment>
