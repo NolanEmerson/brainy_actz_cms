@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import base from '../base';
 
+import Header from './Header';
+
 class Location extends Component {
     constructor(props){
         super(props);
@@ -32,9 +34,10 @@ class Location extends Component {
         });
 
         return (
-            <div>
+            <React.Fragment>
+                <Header location={this.props.match.params.location} />
                 {wallMap}
-            </div>
+            </React.Fragment>
         );
     }
 }

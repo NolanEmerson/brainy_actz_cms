@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import base from '../base';
 
+import Header from './Header';
+
 class Landing extends Component {
     constructor(props){
         super(props);
@@ -57,13 +59,14 @@ class Landing extends Component {
         });
         
         return (
-            <div>
+            <React.Fragment>
+                <Header />
                 {locationMap}
                 <form onSubmit={this.addItem}>
                     <input type="text" value={this.state.newItem} onChange={this.editInput} placeholder='New location name' />
                     <button>Add location</button>
                 </form>
-            </div>
+            </React.Fragment>
         );
     }
 }

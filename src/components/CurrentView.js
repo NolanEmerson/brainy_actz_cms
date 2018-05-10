@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-
 import base from '../base';
+
+import Header from './Header';
 
 class CurrentView extends Component {
     constructor(props){
@@ -29,9 +30,10 @@ class CurrentView extends Component {
         });
 
         return (
-            <div>
+            <React.Fragment>
+                <Header location={this.props.match.params.location} tv={this.props.match.params.screen}/>
                 {viewMap}
-            </div>
+            </React.Fragment>
         )
     }
 }
