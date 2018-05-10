@@ -6,46 +6,71 @@ class Landing extends Component {
         super(props);
         
         this.moveToLocation = this.moveToLocation.bind(this);
+        this.editInput = this.editInput.bind(this);
+        this.addItem = this.addItem.bind(this);
 
         this.state = {
-            locationNames: []
+            locationNames: {},
+            newItem: ''
         }
     }
 
     componentDidMount() {
         this.ref = base.syncState(`/locations`, {
             context: this,
-            state: 'locationsNames',
-            asArray: true
+            state: 'locationNames'
         });
 
-		base.fetch(`/locations`, { context: this }).then( response => {
-		console.log('Response: ', response);
-		this.setupLocations(response);
-        });
+		// base.fetch(`/locations`, { context: this }).then( response => {
+        //     console.log('Response: ', response);
+        //     this.setupLocations(response);
+        // });
     }
 
-	setupLocations(locations) {
-		const locationNames = Object.keys(locations);
+	// setupLocations(locations) {
+	// 	const locationNames = Object.keys(locations);
 
-		this.setState({
-		locationNames
-		});
-    }
+	// 	this.setState({
+	// 	    locationNames
+	// 	});
+    // }
     
     moveToLocation(item) {
         console.log(item);
         this.props.history.push(`/${item}`);
     }
 
+    addItem(e) {
+
+        const {newItem} = this.state
+
+        e.preventDefault();
+        this.setState({
+            locationNames: {
+                newItem
+            },
+            newItem: ''
+        });
+    }
+
+    editInput(e) {
+        this.setState({
+            newItem: e.target.value
+        })
+    }
+
     render() {
-        const locationMap = this.state.locationNames.map( (item, index) => {
+        const locationMap = Object.keys(this.state.locationNames).map( (item, index) => {
             return <div key={index} onClick={() => this.moveToLocation(item)}>{item}</div>
         });
-
+        
         return (
             <div>
                 {locationMap}
+                <form onSubmit={this.addItem}>
+                    <input type="text" value={this.state.newItem} onChange={this.editInput}/>
+                    <button>Click me</button>
+                </form>
             </div>
         );
     }
