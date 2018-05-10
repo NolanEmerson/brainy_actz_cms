@@ -3,3 +3,15 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.mainContainer {
+  height: 100vh;
+  width: 100vw;
+}
+
+.headerContainer {
+  height: 20%;
+  width: 100%;
+  background-color: black;
+  color: white;
+}
