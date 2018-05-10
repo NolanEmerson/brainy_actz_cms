@@ -21,19 +21,11 @@ class Landing extends Component {
             state: 'locationNames'
         });
 
-		// base.fetch(`/locations`, { context: this }).then( response => {
-        //     console.log('Response: ', response);
-        //     this.setupLocations(response);
-        // });
     }
 
-	// setupLocations(locations) {
-	// 	const locationNames = Object.keys(locations);
-
-	// 	this.setState({
-	// 	    locationNames
-	// 	});
-    // }
+    componentWillUnmount() {
+        base.removeBinding(this.ref);
+    }
     
     moveToLocation(item) {
         console.log(item);

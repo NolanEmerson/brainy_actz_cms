@@ -16,6 +16,10 @@ class Location extends Component {
             state: 'wallNames'
         });
     }
+
+    componentWillUnmount() {
+        base.removeBinding(this.ref);
+    }
     
     render() {
         const wallMap = Object.keys(this.state.wallNames).map( (item, index) => {
