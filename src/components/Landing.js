@@ -60,7 +60,7 @@ class Landing extends Component {
         
         return (
             <React.Fragment>
-                <Header />
+                <Header nav={this.props} />
                 {locationMap}
                 <form onSubmit={this.addItem}>
                     <input type="text" value={this.state.newItem} onChange={this.editInput} placeholder='New location name' />

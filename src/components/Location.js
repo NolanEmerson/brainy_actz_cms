@@ -35,7 +35,7 @@ class Location extends Component {
 
         return (
             <React.Fragment>
-                <Header location={this.props.match.params.location} />
+                <Header location={this.props.match.params.location} nav={this.props} />
                 {wallMap}
             </React.Fragment>
         );
