@@ -21,19 +21,11 @@ class Landing extends Component {
             state: 'locationNames'
         });
 
-		// base.fetch(`/locations`, { context: this }).then( response => {
-        //     console.log('Response: ', response);
-        //     this.setupLocations(response);
-        // });
     }
 
-	// setupLocations(locations) {
-	// 	const locationNames = Object.keys(locations);
-
-	// 	this.setState({
-	// 	    locationNames
-	// 	});
-    // }
+    componentWillUnmount() {
+        base.removeBinding(this.ref);
+    }
     
     moveToLocation(item) {
         console.log(item);
@@ -68,8 +60,8 @@ class Landing extends Component {
             <div>
                 {locationMap}
                 <form onSubmit={this.addItem}>
-                    <input type="text" value={this.state.newItem} onChange={this.editInput}/>
-                    <button>Click me</button>
+                    <input type="text" value={this.state.newItem} onChange={this.editInput} placeholder='New location name' />
+                    <button>Add location</button>
                 </form>
             </div>
         );
