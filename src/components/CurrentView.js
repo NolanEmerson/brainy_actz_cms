@@ -29,14 +29,21 @@ class CurrentView extends Component {
     render() {
 
         const viewMap = Object.keys(this.state.currentView).map((item, index) => {
+            let returnValue;
             switch (this.state.currentView[`${item}`]){
                 case 'red':
-                    return <Red />
+                    returnValue = <Red />;
+                    break;
                 case 'green':
-                    return <Green />
+                    returnValue = <Green />
+                    break;
                 case 'blue':
-                    return <Blue />
+                    returnValue =  <Blue />
+                    break;
+                default:
+                    returnValue = 'something broke'
             }
+            return returnValue;
             // return <div key={index}>{`${item}: ${this.state.currentView[`${item}`]}`}</div>
         });
 
