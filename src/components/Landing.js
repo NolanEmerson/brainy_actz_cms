@@ -60,8 +60,8 @@ class Landing extends Component {
             <div>
                 {locationMap}
                 <form onSubmit={this.addItem}>
-                    <input type="text" value={this.state.newItem} onChange={this.editInput}/>
-                    <button>Click me</button>
+                    <input type="text" value={this.state.newItem} onChange={this.editInput} placeholder='New location name' />
+                    <button>Add location</button>
                 </form>
             </div>
         );
