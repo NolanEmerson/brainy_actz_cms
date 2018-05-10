@@ -1,12 +1,14 @@
 	import React, { Component } from 'react';
-
+	import '../css/index.css';
 	import Routing from './Routing';
 
 	class App extends Component {
 		render() {
 
 			return (
-			<Routing />
+				<div className="mainContainer">
+					<Routing />
+				</div>
 			);
 		}
 	}
