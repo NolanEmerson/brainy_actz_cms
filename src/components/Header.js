@@ -4,6 +4,8 @@ class Header extends Component {
 
     render() {
 
+        console.log('Header props: ', this.props);
+
         let location = '';
         let tv = '';
         let currentview = '';
@@ -20,7 +22,10 @@ class Header extends Component {
 
         return (
             <div className="headerContainer">
-                Brainy Actz {location} {tv} {currentview}
+                <span onClick={() =>this.props.nav.history.push('/')}>Brainy Actz</span> 
+                <span onClick={() =>this.props.nav.history.push(`/${this.props.location}`)}>{location}</span> 
+                <span onClick={() =>this.props.nav.history.push(`/${this.props.location}/${this.props.tv}`)}>{tv}</span> 
+                {currentview}
             </div>
         );
     }
