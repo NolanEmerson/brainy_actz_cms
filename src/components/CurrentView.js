@@ -11,14 +11,14 @@ class CurrentView extends Component {
         super(props);
 
         this.state = {
-            currentView: {}
+            current_view: {}
         }
     }
 
     componentDidMount() {
-		this.ref = base.syncState(`/locations/${this.props.match.params.location}/${this.props.match.params.screen}`, {
+		this.ref = base.syncState(`/locations/${this.props.match.params.location}/walls/${this.props.match.params.screen}`, {
             context: this,
-            state: 'currentView'
+            state: 'current_view'
         });
     }
 
@@ -28,28 +28,28 @@ class CurrentView extends Component {
 
     render() {
 
-        const viewMap = Object.keys(this.state.currentView).map((item, index) => {
+        const viewMap = Object.keys(this.state.current_view).map((item, index) => {
             let returnValue;
-            switch (this.state.currentView[`${item}`]){
+            switch (this.state.current_view[`${item}`]){
                 case 'red':
-                    returnValue = <Red />;
+                    returnValue = <Red key={index} />;
                     break;
                 case 'green':
-                    returnValue = <Green />
+                    returnValue = <Green key={index} />
                     break;
                 case 'blue':
-                    returnValue =  <Blue />
+                    returnValue =  <Blue key={index} />
                     break;
                 default:
                     returnValue = 'something broke'
             }
             return returnValue;
-            // return <div key={index}>{`${item}: ${this.state.currentView[`${item}`]}`}</div>
+            // return <div key={index}>{`${item}: ${this.state.current_view[`${item}`]}`}</div>
         });
 
         return (
             <React.Fragment>
-                <Header location={this.props.match.params.location} tv={this.props.match.params.screen} nav={this.props} />
+                <Header location={this.props.match.params.location} tv={this.props.match.params.screen} currentview='Current View' nav={this.props} />
                 {viewMap}
             </React.Fragment>
         )

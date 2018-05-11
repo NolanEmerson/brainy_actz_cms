@@ -8,7 +8,9 @@ class Location extends Component {
         super(props);
         
         this.state = {
-            wallNames: {}
+            wallNames: {
+                walls: {}
+            }
         }
     }
 
@@ -24,18 +26,18 @@ class Location extends Component {
     }
 
     moveToLocation(item) {
-        console.log(item);
         this.props.history.push(`/${this.props.match.params.location}/${item}`);
     }
     
     render() {
-        const wallMap = Object.keys(this.state.wallNames).map( (item, index) => {
+
+        const wallMap = Object.keys(this.state.wallNames.walls).map( (item, index) => {
             return <div key={index} onClick={() => this.moveToLocation(item)}>{item}</div>
         });
-
+        
         return (
             <React.Fragment>
-                <Header location={this.props.match.params.location} nav={this.props} />
+                <Header location={this.state.wallNames.location_name} nav={this.props} />
                 {wallMap}
             </React.Fragment>
         );
