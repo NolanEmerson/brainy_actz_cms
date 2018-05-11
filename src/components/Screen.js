@@ -16,7 +16,7 @@ class Location extends Component {
     }
 
     componentDidMount() {
-		this.ref = base.syncState(`/locations/${this.props.match.params.location}/${this.props.match.params.screen}`, {
+		this.ref = base.syncState(`/locations/${this.props.match.params.location}/walls/${this.props.match.params.screen}`, {
             context: this,
             state: 'screenInfo'
         });
@@ -39,7 +39,10 @@ class Location extends Component {
     }
     
     render() {
-        const {currentView, options} = this.state.screenInfo;
+        console.log('Props: ', this.props);
+        console.log('State: ', this.state);
+
+        const {current_view, options} = this.state.screenInfo;
 
         let optionsMap;
 
@@ -56,7 +59,7 @@ class Location extends Component {
         return (
             <React.Fragment>
                 <Header location={this.props.match.params.location} nav={this.props} />
-                <div onClick={this.moveToLocation}>Current View: {currentView}</div>
+                <div onClick={this.moveToLocation}>Current View: {current_view}</div>
                 {options && <div>
                     Change current view:<br />
                     {optionsMap}

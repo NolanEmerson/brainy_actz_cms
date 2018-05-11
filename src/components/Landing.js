@@ -43,16 +43,16 @@ class Landing extends Component {
         let inputObject = {
             location_name: newLocation,
             walls: {
-                lobby: {
-                    current_view: '',
+                Lobby: {
+                    current_view: 'red',
                     options: [
                         'red',
                         'green',
                         'blue'
                     ]
                 },
-                room: {
-                    current_view: '',
+                Room: {
+                    current_view: 'red',
                     options: [
                         'red',
                         'green',
@@ -75,8 +75,10 @@ class Landing extends Component {
     }
 
     render() {
+
         const locationMap = Object.keys(this.state.locationNames).map( (item, index) => {
-            return <div key={index} onClick={() => this.moveToLocation(item)}>{item}</div>
+            const locationName = this.state.locationNames[`${item}`].location_name;
+            return <div key={index} onClick={() => this.moveToLocation(item)}>{locationName}</div>
         });
         
         return (
