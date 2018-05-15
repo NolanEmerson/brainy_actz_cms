@@ -4,8 +4,6 @@ class Header extends Component {
 
     render() {
 
-        console.log('Header props: ', this.props);
-
         let location = '';
         let tv = '';
         let currentview = '';
@@ -17,7 +15,7 @@ class Header extends Component {
             tv = '> ' + this.props.tv;
         }
         if(this.props.currentview){
-            currentview = '> ' + this.props.currentview;
+            currentview = ' > ' + this.props.currentview;
         }
 
         return (

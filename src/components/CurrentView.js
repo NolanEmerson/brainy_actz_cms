@@ -5,13 +5,15 @@ import Header from './Header';
 import Red from './boards/Red';
 import Green from './boards/Green';
 import Blue from './boards/Blue';
+import Text from './boards/Text';
+import Room from './boards/Room';
 
 class CurrentView extends Component {
     constructor(props){
         super(props);
 
         this.state = {
-            current_view: {
+            baseLink: {
                 walls: {
                     Lobby: {
                         current_view: '',
@@ -29,7 +31,7 @@ class CurrentView extends Component {
     componentDidMount() {
 		this.ref = base.syncState(`/locations/${this.props.match.params.location}`, {
             context: this,
-            state: 'current_view'
+            state: 'baseLink'
         });
     }
 
@@ -37,13 +39,37 @@ class CurrentView extends Component {
         base.removeBinding(this.ref);
     }
 
+    determineCurrentView() {
+        let returnValue;
+            switch (this.state.baseLink.walls[`${this.props.match.params.screen}`].current_view){
+                case 'red':
+                    returnValue = <Red />;
+                    break;
+                case 'green':
+                    returnValue = <Green />
+                    break;
+                case 'blue':
+                    returnValue =  <Blue />
+                    break;
+                case 'text':
+                    returnValue =  <Text />
+                    break;
+                case 'room':
+                    returnValue =  <Room />
+                    break;
+                default:
+                    returnValue = 'something broke'
+            }
+        return returnValue;
+    }
+
     render() {
         console.log('Props: ', this.props);
         console.log('State: ', this.state);
         
-        const viewMap = Object.keys(this.state.current_view.walls[`${this.props.match.params.screen}`].current_view).map((item, index) => {
+        const viewMap = Object.keys(this.state.baseLink.walls[`${this.props.match.params.screen}`].current_view).map((item, index) => {
             let returnValue;
-            switch (this.state.current_view.walls[`${this.props.match.params.screen}`].current_view){
+            switch (this.state.baseLink.walls[`${this.props.match.params.screen}`].current_view){
                 case 'red':
                     returnValue = <Red key={index} />;
                     break;
@@ -52,6 +78,12 @@ class CurrentView extends Component {
                     break;
                 case 'blue':
                     returnValue =  <Blue key={index} />
+                    break;
+                case 'text':
+                    returnValue =  <Text key={index} />
+                    break;
+                case 'room':
+                    returnValue =  <Room key={index} />
                     break;
                 default:
                     returnValue = 'something broke'
@@ -62,8 +94,9 @@ class CurrentView extends Component {
 
         return (
             <React.Fragment>
-                <Header location={this.state.current_view.location_name} tv={this.props.match.params.screen} currentview='Current View' nav={this.props} />
-                {viewMap}
+                <Header location={this.state.baseLink.location_name} tv={this.props.match.params.screen} currentview='Current View' nav={this.props} />
+                {/* {viewMap} */}
+                {this.determineCurrentView()}
             </React.Fragment>
         )
     }

@@ -11,7 +11,7 @@ class Location extends Component {
         this.addNewTV = this.addNewTV.bind(this);
         
         this.state = {
-            wallNames: {
+            baseLink: {
                 walls: {}
             },
             newTV: ''
@@ -21,7 +21,7 @@ class Location extends Component {
     componentDidMount() {
 		this.ref = base.syncState(`/locations/${this.props.match.params.location}`, {
             context: this,
-            state: 'wallNames'
+            state: 'baseLink'
         });
     }
 
@@ -54,25 +54,23 @@ class Location extends Component {
 
         this.setState({
             newTV: '',
-            wallNames: {
+            baseLink: {
                 walls: {
                     ...inputObject
                 }
             }
         });
-
-        // base.push(`/locations/${this.props.match.params.location}/walls`, {data: inputObject});
     }
     
     render() {
 
-        const wallMap = Object.keys(this.state.wallNames.walls).map( (item, index) => {
+        const wallMap = Object.keys(this.state.baseLink.walls).map( (item, index) => {
             return <div key={index} onClick={() => this.moveToLocation(item)}>{item}</div>
         });
         
         return (
             <React.Fragment>
-                <Header location={this.state.wallNames.location_name} nav={this.props} />
+                <Header location={this.state.baseLink.location_name} nav={this.props} />
                 {wallMap}
                 <form onSubmit={this.addNewTV}>
                     <input type="text" value={this.state.newTV} onChange={this.handleInputChange} placeholder='New tv name' />
