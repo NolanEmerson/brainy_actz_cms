@@ -12,7 +12,7 @@ class Landing extends Component {
         this.addNewLocation = this.addNewLocation.bind(this);
 
         this.state = {
-            locationNames: {},
+            baseLink: {},
             newLocation: ''
         }
     }
@@ -20,7 +20,7 @@ class Landing extends Component {
     componentDidMount() {
         this.ref = base.syncState(`/locations`, {
             context: this,
-            state: 'locationNames'
+            state: 'baseLink'
         });
 
     }
@@ -76,8 +76,8 @@ class Landing extends Component {
 
     render() {
 
-        const locationMap = Object.keys(this.state.locationNames).map( (item, index) => {
-            const locationName = this.state.locationNames[`${item}`].location_name;
+        const locationMap = Object.keys(this.state.baseLink).map( (item, index) => {
+            const locationName = this.state.baseLink[`${item}`].location_name;
             return <div key={index} onClick={() => this.moveToLocation(item)}>{locationName}</div>
         });
         

@@ -9,9 +9,10 @@ class Location extends Component {
 
         this.moveToLocation = this.moveToLocation.bind(this);
         this.changeCurrentView = this.changeCurrentView.bind(this);
+        this.addNewScreen = this.addNewScreen.bind(this);
         
         this.state = {
-            screenInfo: {
+            baseLink: {
                 walls: {
                     Lobby: {
                         current_view: '',
@@ -29,7 +30,7 @@ class Location extends Component {
     componentDidMount() {
 		this.ref = base.syncState(`/locations/${this.props.match.params.location}`, {
             context: this,
-            state: 'screenInfo'
+            state: 'baseLink'
         });
     }
 
@@ -43,7 +44,7 @@ class Location extends Component {
 
     changeCurrentView(item) {
         this.setState({
-            screenInfo: {
+            baseLink: {
                 walls: {
                     [`${this.props.match.params.screen}`]: {
                         current_view: item
@@ -52,12 +53,16 @@ class Location extends Component {
             }
         });
     }
+
+    addNewScreen() {
+        this.props.history.push(`/${this.props.match.params.location}/${this.props.match.params.screen}/add-board`);
+    }
     
     render() {
         console.log('Props: ', this.props);
         console.log('State: ', this.state);
 
-        const {current_view, options} = this.state.screenInfo.walls[`${this.props.match.params.screen}`];
+        const {current_view, options} = this.state.baseLink.walls[`${this.props.match.params.screen}`];
 
         let optionsMap;
 
@@ -73,12 +78,13 @@ class Location extends Component {
 
         return (
             <React.Fragment>
-                <Header location={this.state.screenInfo.location_name} tv={this.props.match.params.screen} nav={this.props} />
+                <Header location={this.state.baseLink.location_name} tv={this.props.match.params.screen} nav={this.props} />
                 <div onClick={this.moveToLocation}>Current View: {current_view}</div>
                 {options && <div>
                     Change current view:<br />
                     {optionsMap}
                 </div>}
+                <button onClick={this.addNewScreen}>Add new screen options</button>
             </React.Fragment>
         );
     }
