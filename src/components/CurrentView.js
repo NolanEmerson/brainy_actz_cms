@@ -66,36 +66,10 @@ class CurrentView extends Component {
     render() {
         console.log('Props: ', this.props);
         console.log('State: ', this.state);
-        
-        const viewMap = Object.keys(this.state.baseLink.walls[`${this.props.match.params.screen}`].current_view).map((item, index) => {
-            let returnValue;
-            switch (this.state.baseLink.walls[`${this.props.match.params.screen}`].current_view){
-                case 'red':
-                    returnValue = <Red key={index} />;
-                    break;
-                case 'green':
-                    returnValue = <Green key={index} />
-                    break;
-                case 'blue':
-                    returnValue =  <Blue key={index} />
-                    break;
-                case 'text':
-                    returnValue =  <Text key={index} />
-                    break;
-                case 'room':
-                    returnValue =  <Room key={index} />
-                    break;
-                default:
-                    returnValue = 'something broke'
-            }
-            return returnValue;
-            // return <div key={index}>{`${item}: ${this.state.current_view[`${item}`]}`}</div>
-        });
 
         return (
             <React.Fragment>
                 <Header location={this.state.baseLink.location_name} tv={this.props.match.params.screen} currentview='Current View' nav={this.props} />
-                {/* {viewMap} */}
                 {this.determineCurrentView()}
             </React.Fragment>
         )
