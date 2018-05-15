@@ -27,7 +27,7 @@ class CurrentView extends Component {
     }
 
     render() {
-
+        
         const viewMap = Object.keys(this.state.current_view).map((item, index) => {
             let returnValue;
             switch (this.state.current_view[`${item}`]){
