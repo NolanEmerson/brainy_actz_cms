@@ -15,3 +15,14 @@ body {
   background-color: black;
   color: white;
 }
+
+.boardTest {
+  height: 100%;
+  width: 100%;
+}
+
+.boardOptionsArea {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}

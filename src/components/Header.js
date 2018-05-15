@@ -15,12 +15,15 @@ class Header extends Component {
             tv = '> ' + this.props.tv;
         }
         if(this.props.currentview){
-            currentview = '> ' + this.props.currentview;
+            currentview = ' > ' + this.props.currentview;
         }
 
         return (
             <div className="headerContainer">
-                Brainy Actz {location} {tv} {currentview}
+                <span onClick={() =>this.props.nav.history.push('/')}>Brainy Actz</span>
+                <span onClick={() =>this.props.nav.history.push(`/${this.props.nav.match.params.location}`)}> {location}</span>
+                <span onClick={() =>this.props.nav.history.push(`/${this.props.nav.match.params.location}/${this.props.tv}`)}> {tv}</span> 
+                {currentview}
             </div>
         );
     }
