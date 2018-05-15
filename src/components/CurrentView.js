@@ -11,12 +11,23 @@ class CurrentView extends Component {
         super(props);
 
         this.state = {
-            current_view: {}
+            current_view: {
+                walls: {
+                    Lobby: {
+                        current_view: '',
+                        options: []
+                    },
+                    Room: {
+                        current_view: '',
+                        options: []
+                    }
+                }
+            }
         }
     }
 
     componentDidMount() {
-		this.ref = base.syncState(`/locations/${this.props.match.params.location}/walls/${this.props.match.params.screen}`, {
+		this.ref = base.syncState(`/locations/${this.props.match.params.location}`, {
             context: this,
             state: 'current_view'
         });
@@ -27,10 +38,12 @@ class CurrentView extends Component {
     }
 
     render() {
+        console.log('Props: ', this.props);
+        console.log('State: ', this.state);
         
-        const viewMap = Object.keys(this.state.current_view).map((item, index) => {
+        const viewMap = Object.keys(this.state.current_view.walls[`${this.props.match.params.screen}`].current_view).map((item, index) => {
             let returnValue;
-            switch (this.state.current_view[`${item}`]){
+            switch (this.state.current_view.walls[`${this.props.match.params.screen}`].current_view){
                 case 'red':
                     returnValue = <Red key={index} />;
                     break;
@@ -49,7 +62,7 @@ class CurrentView extends Component {
 
         return (
             <React.Fragment>
-                <Header location={this.props.match.params.location} tv={this.props.match.params.screen} currentview='Current View' nav={this.props} />
+                <Header location={this.state.current_view.location_name} tv={this.props.match.params.screen} currentview='Current View' nav={this.props} />
                 {viewMap}
             </React.Fragment>
         )

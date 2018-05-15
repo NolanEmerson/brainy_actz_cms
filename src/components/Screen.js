@@ -11,12 +11,23 @@ class Location extends Component {
         this.changeCurrentView = this.changeCurrentView.bind(this);
         
         this.state = {
-            screenInfo: {}
+            screenInfo: {
+                walls: {
+                    Lobby: {
+                        current_view: '',
+                        options: []
+                    },
+                    Room: {
+                        current_view: '',
+                        options: []
+                    }
+                }
+            }
         }
     }
 
     componentDidMount() {
-		this.ref = base.syncState(`/locations/${this.props.match.params.location}/walls/${this.props.match.params.screen}`, {
+		this.ref = base.syncState(`/locations/${this.props.match.params.location}`, {
             context: this,
             state: 'screenInfo'
         });
@@ -33,7 +44,11 @@ class Location extends Component {
     changeCurrentView(item) {
         this.setState({
             screenInfo: {
-                current_view: item
+                walls: {
+                    [`${this.props.match.params.screen}`]: {
+                        current_view: item
+                    }
+                }
             }
         });
     }
@@ -42,7 +57,7 @@ class Location extends Component {
         console.log('Props: ', this.props);
         console.log('State: ', this.state);
 
-        const {current_view, options} = this.state.screenInfo;
+        const {current_view, options} = this.state.screenInfo.walls[`${this.props.match.params.screen}`];
 
         let optionsMap;
 
@@ -58,7 +73,7 @@ class Location extends Component {
 
         return (
             <React.Fragment>
-                <Header location={this.props.match.params.location} nav={this.props} />
+                <Header location={this.state.screenInfo.location_name} tv={this.props.match.params.screen} nav={this.props} />
                 <div onClick={this.moveToLocation}>Current View: {current_view}</div>
                 {options && <div>
                     Change current view:<br />
