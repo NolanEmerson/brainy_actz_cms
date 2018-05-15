@@ -33,7 +33,7 @@ class Location extends Component {
     changeCurrentView(item) {
         this.setState({
             screenInfo: {
-                currentView: item
+                current_view: item
             }
         });
     }
