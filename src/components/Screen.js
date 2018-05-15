@@ -13,16 +13,7 @@ class Location extends Component {
         
         this.state = {
             baseLink: {
-                walls: {
-                    Lobby: {
-                        current_view: '',
-                        options: []
-                    },
-                    Room: {
-                        current_view: '',
-                        options: []
-                    }
-                }
+                walls: {}
             }
         }
     }
@@ -62,7 +53,7 @@ class Location extends Component {
         console.log('Props: ', this.props);
         console.log('State: ', this.state);
 
-        const {current_view, options} = this.state.baseLink.walls[`${this.props.match.params.screen}`];
+        const {current_view, options} = this.state.baseLink.walls[`${this.props.match.params.screen}`] || '';
 
         let optionsMap;
 

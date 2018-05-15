@@ -15,14 +15,6 @@ class CurrentView extends Component {
         this.state = {
             baseLink: {
                 walls: {
-                    Lobby: {
-                        current_view: '',
-                        options: []
-                    },
-                    Room: {
-                        current_view: '',
-                        options: []
-                    }
                 }
             }
         }
@@ -40,7 +32,8 @@ class CurrentView extends Component {
     }
 
     determineCurrentView() {
-        let returnValue;
+        if (this.state.baseLink.walls[`${this.props.match.params.screen}`]){
+            let returnValue;
             switch (this.state.baseLink.walls[`${this.props.match.params.screen}`].current_view){
                 case 'red':
                     returnValue = <Red />;
@@ -60,7 +53,8 @@ class CurrentView extends Component {
                 default:
                     returnValue = 'something broke'
             }
-        return returnValue;
+            return returnValue;
+        }
     }
 
     render() {

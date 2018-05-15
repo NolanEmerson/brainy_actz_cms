@@ -48,7 +48,7 @@ class Location extends Component {
         let inputObject = {
             [`${newTV}`]: {
                 current_view: '',
-                options: []
+                options: ['text']
             }
         };
 

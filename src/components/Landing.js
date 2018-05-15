@@ -44,19 +44,15 @@ class Landing extends Component {
             location_name: newLocation,
             walls: {
                 Lobby: {
-                    current_view: 'red',
+                    current_view: '',
                     options: [
-                        'red',
-                        'green',
-                        'blue'
+                        'text'
                     ]
                 },
                 Room: {
-                    current_view: 'red',
+                    current_view: '',
                     options: [
-                        'red',
-                        'green',
-                        'blue'
+                        'text'
                     ]
                 }
             }

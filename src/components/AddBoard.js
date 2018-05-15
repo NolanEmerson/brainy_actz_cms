@@ -8,16 +8,7 @@ class AddBoard extends Component {
 
         this.state = {
             baseLink: {
-                walls: {
-                    Lobby: {
-                        current_view: '',
-                        options: []
-                    },
-                    Room: {
-                        current_view: '',
-                        options: []
-                    }
-                }
+                walls: {}
             }
         }
     }
@@ -33,7 +24,7 @@ class AddBoard extends Component {
         base.removeBinding(this.ref);
     }
 
-    checkBoardOptions(array) {
+    checkBoardOptions(array = ['']) {
         let unusedOptions = ['red', 'green', 'blue', 'text', 'room'];
 
         for (let i=0; i<array.length; i++) {
@@ -72,7 +63,9 @@ class AddBoard extends Component {
         console.log('Add board props: ', this.props);
         console.log('Add board state: ', this.state);
 
-        let {options} = this.state.baseLink.walls[`${this.props.match.params.screen}`];
+        let {options} = this.state.baseLink.walls[`${this.props.match.params.screen}`] || '';
+
+        if (!options) { options = [''] };
 
         let unusedOptions = this.checkBoardOptions(options);
 
