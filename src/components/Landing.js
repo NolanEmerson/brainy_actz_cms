@@ -74,17 +74,21 @@ class Landing extends Component {
 
         const locationMap = Object.keys(this.state.baseLink).map( (item, index) => {
             const locationName = this.state.baseLink[`${item}`].location_name;
-            return <div key={index} onClick={() => this.moveToLocation(item)}>{locationName}</div>
+            return <div key={index} onClick={() => this.moveToLocation(item)} className='landingItem'>
+                        <div>{locationName}</div>
+                    </div>
         });
         
         return (
             <React.Fragment>
                 <Header nav={this.props} />
-                {locationMap}
-                <form onSubmit={this.addNewLocation}>
-                    <input type="text" value={this.state.newLocation} onChange={this.handleInputChange} placeholder='New location name' />
-                    <button>Add location</button>
-                </form>
+                <div className="mainBodyFlexContainer">
+                    {locationMap}
+                    <form onSubmit={this.addNewLocation}>
+                        <input type="text" value={this.state.newLocation} onChange={this.handleInputChange} placeholder='New location name' />
+                        <button>Add location</button>
+                    </form>
+                </div>
             </React.Fragment>
         );
     }

@@ -64,7 +64,9 @@ class CurrentView extends Component {
         return (
             <React.Fragment>
                 <Header location={this.state.baseLink.location_name} tv={this.props.match.params.screen} currentview='Current View' nav={this.props} />
-                {this.determineCurrentView()}
+                <div className="mainBodyContainer">
+                    {this.determineCurrentView()}
+                </div>
             </React.Fragment>
         )
     }
