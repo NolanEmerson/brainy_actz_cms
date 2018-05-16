@@ -84,18 +84,20 @@ class AddBoard extends Component {
         return (
             <React.Fragment>
                 <Header location={this.state.baseLink.location_name} tv={this.props.match.params.screen} currentview='Add Board' nav={this.props} />
-                <div className='boardOptionsArea'>
-                    <div>
-                        Currently selectable boards
-                        <ul>
-                            {optionsMap}
-                        </ul>
-                    </div>
-                    <div>
-                        Unselectable boards
-                        <ul>
-                            {unusedMap}
-                        </ul>
+                <div className="mainBodyContainer">
+                    <div className='boardOptionsArea'>
+                        <div>
+                            Currently selectable boards
+                            <ul>
+                                {optionsMap}
+                            </ul>
+                        </div>
+                        <div>
+                            Unselectable boards
+                            <ul>
+                                {unusedMap}
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </React.Fragment>

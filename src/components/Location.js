@@ -65,17 +65,21 @@ class Location extends Component {
     render() {
 
         const wallMap = Object.keys(this.state.baseLink.walls).map( (item, index) => {
-            return <div key={index} onClick={() => this.moveToLocation(item)}>{item}</div>
+            return <div key={index} onClick={() => this.moveToLocation(item)} className='locationItem'>
+                <div>{item}</div>
+            </div>
         });
         
         return (
             <React.Fragment>
                 <Header location={this.state.baseLink.location_name} nav={this.props} />
-                {wallMap}
-                <form onSubmit={this.addNewTV}>
-                    <input type="text" value={this.state.newTV} onChange={this.handleInputChange} placeholder='New tv name' />
-                    <button>Add tv</button>
-                </form>
+                <div className="mainBodyFlexContainer">
+                    {wallMap}
+                    <form onSubmit={this.addNewTV}>
+                        <input type="text" value={this.state.newTV} onChange={this.handleInputChange} placeholder='New tv name' />
+                        <button>Add tv</button>
+                    </form>
+                </div>
             </React.Fragment>
         );
     }

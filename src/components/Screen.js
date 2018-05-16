@@ -70,12 +70,14 @@ class Location extends Component {
         return (
             <React.Fragment>
                 <Header location={this.state.baseLink.location_name} tv={this.props.match.params.screen} nav={this.props} />
-                <div onClick={this.moveToLocation}>Current View: {current_view}</div>
-                {options && <div>
-                    Change current view:<br />
-                    {optionsMap}
-                </div>}
-                <button onClick={this.addNewScreen}>Add new screen options</button>
+                <div className="mainBodyContainer">
+                    <div onClick={this.moveToLocation}>Current View: {current_view}</div>
+                    {options && <div>
+                        Change current view:<br />
+                        {optionsMap}
+                    </div>}
+                    <button onClick={this.addNewScreen}>Add new screen options</button>
+                </div>
             </React.Fragment>
         );
     }
