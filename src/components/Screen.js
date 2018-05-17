@@ -2,6 +2,11 @@ import React, {Component} from 'react';
 import base from '../base';
 
 import Header from './Header';
+import Red from './boards/Red';
+import Green from './boards/Green';
+import Blue from './boards/Blue';
+import Text from './boards/Text';
+import Room from './boards/Room';
 
 class Location extends Component {
     constructor(props){
@@ -48,6 +53,30 @@ class Location extends Component {
     addNewScreen() {
         this.props.history.push(`/${this.props.match.params.location}/${this.props.match.params.screen}/add-board`);
     }
+
+    determineCurrentThumb(current) {
+        let returnValue;
+            switch (current){
+                case 'red':
+                    returnValue = <Red />;
+                    break;
+                case 'green':
+                    returnValue = <Green />
+                    break;
+                case 'blue':
+                    returnValue =  <Blue />
+                    break;
+                case 'text':
+                    returnValue =  <Text title={this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text.text.title} subtitle={this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text.text.subtitle} />
+                    break;
+                case 'room':
+                    returnValue =  <Room />
+                    break;
+                default:
+                    returnValue = 'something broke'
+            }
+            return returnValue;
+    }
     
     render() {
 
@@ -69,7 +98,14 @@ class Location extends Component {
             <React.Fragment>
                 <Header location={this.state.baseLink.location_name} tv={this.props.match.params.screen} nav={this.props} />
                 <div className="mainBodyContainer">
-                    <div onClick={this.moveToLocation}>Current View: {current_view}</div>
+                    <div onClick={this.moveToLocation}>Current View:
+                        <div className="currentViewItem">
+                            {current_view}
+                            <div className="currentViewThumb">
+                                {this.determineCurrentThumb(current_view)}
+                            </div>
+                        </div>
+                    </div>
                     {options && <div>
                         Change current view:<br />
                         {optionsMap}

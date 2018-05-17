@@ -67,6 +67,27 @@ body {
 	right: 0;
 }
 
+/* ////////////////////////////////////////////////////////////////// SCREENS PAGE ////////////////////////////////////////////////////////////////// */
+
+.currentViewItem {
+	height: 175px;
+	width: 275px;
+	margin: 20px;
+	background-color: black;
+	color: white;
+	text-align: center;
+	position: relative;
+}
+
+.currentViewThumb {
+	height: 80%;
+	width: 80%;
+	position: absolute;
+	left: 50%;
+	bottom: 20%;
+	transform: translate(-50%, 20%);
+}
+
 /* ////////////////////////////////////////////////////////////////// MODAL AREA ////////////////////////////////////////////////////////////////// */
 
 .modalBackground {
