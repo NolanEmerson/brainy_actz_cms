@@ -45,7 +45,7 @@ class CurrentView extends Component {
                     returnValue =  <Blue />
                     break;
                 case 'text':
-                    returnValue =  <Text />
+                    returnValue =  <Text title={this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text.text.title} subtitle={this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text.text.subtitle} />
                     break;
                 case 'room':
                     returnValue =  <Room />
@@ -58,8 +58,6 @@ class CurrentView extends Component {
     }
 
     render() {
-        console.log('Props: ', this.props);
-        console.log('State: ', this.state);
 
         return (
             <React.Fragment>
