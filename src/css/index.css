@@ -44,32 +44,33 @@ body {
 }
 
 .deleteButton, .editButton {
-	height: 50%;
-	width: 15%;
+	height: 45%;
+	width: 14%;
 	position: absolute;
 	box-sizing: border-box;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	border-radius: 5px;
 }
 
 .deleteButton {
 	color: red;
 	border: 1px solid red;
-	top: 0;
-	right: 0;
+	top: 2px;
+	right: 2px;
 }
 
 .editButton {
 	color: yellow;
 	border: 1px solid yellow;
-	bottom: 0;
-	right: 0;
+	bottom: 2px;
+	right: 2px;
 }
 
 /* ////////////////////////////////////////////////////////////////// SCREENS PAGE ////////////////////////////////////////////////////////////////// */
 
-.currentViewItem {
+.boardViewItem {
 	height: 175px;
 	width: 275px;
 	margin: 20px;
@@ -77,15 +78,30 @@ body {
 	color: white;
 	text-align: center;
 	position: relative;
+	display: inline-block;
 }
 
-.currentViewThumb {
+.boardViewThumb {
 	height: 80%;
 	width: 80%;
 	position: absolute;
-	left: 50%;
-	bottom: 20%;
-	transform: translate(-50%, 20%);
+	bottom: 10px;
+	left: 10px;
+}
+
+.boardEditButton {
+	height: 20%;
+	width: 12%;
+	position: absolute;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: yellow;
+	border: 1px solid yellow;
+	bottom: 2px;
+	right: 2px;
+	border-radius: 5px;
 }
 
 /* ////////////////////////////////////////////////////////////////// MODAL AREA ////////////////////////////////////////////////////////////////// */
@@ -117,7 +133,12 @@ body {
 	border: 2px solid yellow;
 }
 
-.modalArea > input {
+.modalArea > div > input {
+	text-align: center;
+}
+
+.modalLabel {
+	display: block;
 	text-align: center;
 }
 
