@@ -40,4 +40,64 @@ body {
 	justify-content: center;
 	align-items: center;
 	cursor: pointer;
+	position: relative;
+}
+
+.deleteButton, .editButton {
+	height: 50%;
+	width: 15%;
+	position: absolute;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.deleteButton {
+	color: red;
+	border: 1px solid red;
+	top: 0;
+	right: 0;
+}
+
+.editButton {
+	color: yellow;
+	border: 1px solid yellow;
+	bottom: 0;
+	right: 0;
+}
+
+/* ////////////////////////////////////////////////////////////////// MODAL AREA ////////////////////////////////////////////////////////////////// */
+
+.modalBackground {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	background-color: rgba(0, 0, 0, .4);
+	top: 0;
+	left: 0;
+	z-index: 10;
+}
+
+.modalArea {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	height: 50%;
+	width: 50%;
+	background-color: black;
+	color: white;
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	justify-content: space-around;
+	box-sizing: border-box;
+	border: 2px solid yellow;
+}
+
+.modalButtons {
+	width: 30%;
+	display: flex;
+	justify-content: space-around;
 }

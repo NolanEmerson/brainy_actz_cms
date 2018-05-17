@@ -67,6 +67,8 @@ class Location extends Component {
         const wallMap = Object.keys(this.state.baseLink.walls).map( (item, index) => {
             return <div key={index} onClick={() => this.moveToLocation(item)} className='locationItem'>
                 <div>{item}</div>
+                <div className="deleteButton">Del</div>
+                <div className="editButton">Edit</div>
             </div>
         });
         
