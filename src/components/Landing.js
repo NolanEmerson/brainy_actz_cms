@@ -105,7 +105,7 @@ class Landing extends Component {
                 }
             },
             editModal: false
-        })
+        });
     }
 
     render() {
