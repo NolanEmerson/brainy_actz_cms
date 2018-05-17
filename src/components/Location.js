@@ -75,7 +75,6 @@ class Location extends Component {
             delete newState.baseLink.walls[originalScreen];
         }
 
-        console.log(newState);
         base.remove(`/locations/${this.props.match.params.location}/walls/${originalScreen}`);
 
         this.setState({
@@ -93,7 +92,13 @@ class Location extends Component {
         let inputObject = {
             [`${newTV}`]: {
                 current_view: '',
-                options: ['text']
+                options: ['text'],
+                display_text: {
+                    text: {
+                        title: 'Pacific Life',
+                        subtitle: 'Team Building Day!'
+                    }
+                }
             }
         };
 

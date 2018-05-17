@@ -54,13 +54,25 @@ class Landing extends Component {
                     current_view: '',
                     options: [
                         'text'
-                    ]
+                    ],
+                    display_text: {
+                        text: {
+                            title: 'Pacific Life',
+                            subtitle: 'Team Building Day!'
+                        }
+                    }
                 },
                 Room: {
                     current_view: '',
                     options: [
                         'text'
-                    ]
+                    ],
+                    display_text: {
+                        text: {
+                            title: 'Pacific Life',
+                            subtitle: 'Team Building Day!'
+                        }
+                    }
                 }
             }
         }

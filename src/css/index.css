@@ -96,6 +96,10 @@ body {
 	border: 2px solid yellow;
 }
 
+.modalArea > input {
+	text-align: center;
+}
+
 .modalButtons {
 	width: 30%;
 	display: flex;
