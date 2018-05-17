@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import base from '../base';
 
 import Header from './Header';
+import EditModal from './EditModal';
 
 class Landing extends Component {
     constructor(props){
@@ -10,10 +11,16 @@ class Landing extends Component {
         this.moveToLocation = this.moveToLocation.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.addNewLocation = this.addNewLocation.bind(this);
+        this.openEditModal = this.openEditModal.bind(this);
 
         this.state = {
             baseLink: {},
-            newLocation: ''
+            newLocation: '',
+            editModal: false,
+            editInfo: {
+                location: '',
+                location_name: ''
+            }
         }
     }
 
@@ -67,6 +74,37 @@ class Landing extends Component {
     handleInputChange(e) {
         this.setState({
             newLocation: e.target.value
+        });
+    }
+
+    openEditModal(e, location) {
+        e.stopPropagation();
+
+        const location_name = this.state.baseLink[`${location}`].location_name;
+
+        this.setState({
+            editModal: true,
+            editInfo: {
+                location,
+                location_name
+            }
+        });
+    }
+
+    closeEditModal() {
+        this.setState({
+            editModal: false
+        });
+    }
+
+    submitEditInfo(location, newName) {
+        this.setState({
+            baseLink: {
+                [`${location}`]: {
+                    location_name: newName
+                }
+            },
+            editModal: false
         })
     }
 
@@ -76,11 +114,14 @@ class Landing extends Component {
             const locationName = this.state.baseLink[`${item}`].location_name;
             return <div key={index} onClick={() => this.moveToLocation(item)} className='landingItem'>
                         <div>{locationName}</div>
+                        <div className="deleteButton">Del</div>
+                        <div className="editButton" onClick={(e) => this.openEditModal(e,item)}>Edit</div>
                     </div>
         });
         
         return (
             <React.Fragment>
+                {this.state.editModal && <EditModal closeEditModal={this.closeEditModal.bind(this)} editInfo={this.state.editInfo.location_name} submitEditInfo={this.submitEditInfo.bind(this)} location={this.state.editInfo.location} />}
                 <Header nav={this.props} />
                 <div className="mainBodyFlexContainer">
                     {locationMap}
