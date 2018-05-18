@@ -13,9 +13,11 @@ class EditBoard extends Component {
     }
 
     componentDidMount() {
-        const {editTitle} = this.props;
+        console.log(this.props);
+        const {editTitle, editSubtitle} = this.props.editInfo;
         this.setState({
-            editTitle
+            editTitle,
+            editSubtitle
         });
     }
 
@@ -36,7 +38,7 @@ class EditBoard extends Component {
                     </div>
                     <div>
                         <label htmlFor="editSubtitle" className='modalLabel'>Subtitle</label>
-                        <input type="text" value={this.state.editSubtitle} onChange={this.handleInputChange} name='editSubtitle' />
+                        <input type="text" value={this.state.editSubtitle} onChange={(e) => this.handleInputChange(e)} name='editSubtitle' />
                     </div>
                     <div className="modalButtons">
                         <button onClick={() => this.props.submitEditInfo(this.props.location, this.state.editTitle, this.props.editTitle)}>Submit</button>

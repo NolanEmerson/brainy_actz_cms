@@ -63,10 +63,14 @@ class Location extends Component {
     openEditBoard(e, editItem){
         e.stopPropagation();
 
-        console.log(editItem);
+        const editTitle = this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text[`${editItem}`].title;
+        const editSubtitle = this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text[`${editItem}`].subtitle;
 
         this.setState({
-            editBoard: true
+            editBoard: true,
+            editInfo: {
+                editTitle, editSubtitle
+            }
         });
     }
 
@@ -122,7 +126,7 @@ class Location extends Component {
 
         return (
             <React.Fragment>
-                {this.state.editBoard && <EditBoard closeEditBoard={this.closeEditBoard.bind(this)} />}
+                {this.state.editBoard && <EditBoard closeEditBoard={this.closeEditBoard.bind(this)} editInfo={this.state.editInfo} />}
                 <Header location={this.state.baseLink.location_name} tv={this.props.match.params.screen} nav={this.props} />
                 <div className="mainBodyContainer">
                     <div>Current View:
