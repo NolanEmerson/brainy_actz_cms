@@ -2,6 +2,12 @@ import React, {Component} from 'react';
 import base from '../base';
 
 import Header from './Header';
+import EditBoard from './EditBoard';
+import Red from './boards/Red';
+import Green from './boards/Green';
+import Blue from './boards/Blue';
+import Text from './boards/Text';
+import Room from './boards/Room';
 
 class Location extends Component {
     constructor(props){
@@ -14,6 +20,11 @@ class Location extends Component {
         this.state = {
             baseLink: {
                 walls: {}
+            },
+            editBoard: false,
+            editInfo: {
+                editTitle: '',
+                editSubtitle: ''
             }
         }
     }
@@ -48,6 +59,50 @@ class Location extends Component {
     addNewScreen() {
         this.props.history.push(`/${this.props.match.params.location}/${this.props.match.params.screen}/add-board`);
     }
+
+    openEditBoard(e, editItem){
+        e.stopPropagation();
+
+        const editTitle = this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text[`${editItem}`].title;
+        const editSubtitle = this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text[`${editItem}`].subtitle;
+
+        this.setState({
+            editBoard: true,
+            editInfo: {
+                editTitle, editSubtitle
+            }
+        });
+    }
+
+    closeEditBoard() {
+        this.setState({
+            editBoard: false
+        });
+    }
+
+    determineThumbnail(current) {
+        let returnValue;
+            switch (current){
+                case 'red':
+                    returnValue = <Red />;
+                    break;
+                case 'green':
+                    returnValue = <Green />
+                    break;
+                case 'blue':
+                    returnValue =  <Blue />
+                    break;
+                case 'text':
+                    returnValue =  <Text title={this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text.text.title} subtitle={this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text.text.subtitle} />
+                    break;
+                case 'room':
+                    returnValue =  <Room />
+                    break;
+                default:
+                    returnValue = 'No current display'
+            }
+            return returnValue;
+    }
     
     render() {
 
@@ -58,8 +113,12 @@ class Location extends Component {
         if(options) {
             optionsMap = options.map( (item, index) => {
                 return (
-                    <div key={index} onClick={() => this.changeCurrentView(item)}>
+                    <div key={index} onClick={() => this.changeCurrentView(item)} className='boardViewItem'>
                         {item}
+                        <div className="boardViewThumb">
+                            {this.determineThumbnail(item)}
+                        </div>
+                        {item === 'text' ? <div className="boardEditButton" onClick={e => this.openEditBoard(e, item)}><i className='fas fa-pencil-alt'></i></div> : ''}
                     </div>
                 )
             });
@@ -67,9 +126,18 @@ class Location extends Component {
 
         return (
             <React.Fragment>
+                {this.state.editBoard && <EditBoard closeEditBoard={this.closeEditBoard.bind(this)} editInfo={this.state.editInfo} />}
                 <Header location={this.state.baseLink.location_name} tv={this.props.match.params.screen} nav={this.props} />
                 <div className="mainBodyContainer">
-                    <div onClick={this.moveToLocation}>Current View: {current_view}</div>
+                    <div>Current View:
+                        <div className="boardViewItem" onClick={this.moveToLocation}>
+                            {current_view}
+                            <div className="boardViewThumb">
+                                {this.determineThumbnail(current_view)}
+                            </div>
+                            <div className="boardEditButton" onClick={e => this.openEditBoard(e, current_view)}><i className='fas fa-pencil-alt'></i></div>
+                        </div>
+                    </div>
                     {options && <div>
                         Change current view:<br />
                         {optionsMap}

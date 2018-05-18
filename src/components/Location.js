@@ -117,8 +117,8 @@ class Location extends Component {
         const wallMap = Object.keys(this.state.baseLink.walls).map( (item, index) => {
             return <div key={index} onClick={() => this.moveToLocation(item)} className='locationItem'>
                 <div>{item}</div>
-                <div className="deleteButton">Del</div>
-                <div className="editButton" onClick={(e) => this.openEditModal(e,item)}>Edit</div>
+                <div className="deleteButton"><i className='fas fa-trash-alt'></i></div>
+                <div className="editButton" onClick={(e) => this.openEditModal(e,item)}><i className='fas fa-pencil-alt'></i></div>
             </div>
         });
         

@@ -126,8 +126,8 @@ class Landing extends Component {
             const locationName = this.state.baseLink[`${item}`].location_name;
             return <div key={index} onClick={() => this.moveToLocation(item)} className='landingItem'>
                         <div>{locationName}</div>
-                        <div className="deleteButton">Del</div>
-                        <div className="editButton" onClick={(e) => this.openEditModal(e,item)}>Edit</div>
+                        <div className="deleteButton"><i className='fas fa-trash-alt'></i></div>
+                        <div className="editButton" onClick={(e) => this.openEditModal(e,item)}><i className='fas fa-pencil-alt'></i></div>
                     </div>
         });
         
