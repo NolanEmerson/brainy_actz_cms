@@ -16,6 +16,7 @@ class Location extends Component {
         this.moveToLocation = this.moveToLocation.bind(this);
         this.changeCurrentView = this.changeCurrentView.bind(this);
         this.addNewScreen = this.addNewScreen.bind(this);
+        this.submitEditInfo = this.submitEditInfo.bind(this);
         
         this.state = {
             baseLink: {
@@ -25,7 +26,8 @@ class Location extends Component {
             editInfo: {
                 editTitle: '',
                 editSubtitle: ''
-            }
+            },
+            itemToEdit: ''
         }
     }
 
@@ -70,12 +72,25 @@ class Location extends Component {
             editBoard: true,
             editInfo: {
                 editTitle, editSubtitle
-            }
+            },
+            itemToEdit: editItem
         });
     }
 
     closeEditBoard() {
         this.setState({
+            editBoard: false
+        });
+    }
+
+    submitEditInfo(title, subtitle) {
+        const newState = {...this.state};
+
+        newState.baseLink.walls[`${this.props.match.params.screen}`].display_text[`${this.state.itemToEdit}`].title = title;
+        newState.baseLink.walls[`${this.props.match.params.screen}`].display_text[`${this.state.itemToEdit}`].subtitle = subtitle;
+
+        this.setState({
+            ...newState,
             editBoard: false
         });
     }
@@ -126,7 +141,7 @@ class Location extends Component {
 
         return (
             <React.Fragment>
-                {this.state.editBoard && <EditBoard closeEditBoard={this.closeEditBoard.bind(this)} editInfo={this.state.editInfo} />}
+                {this.state.editBoard && <EditBoard closeEditBoard={this.closeEditBoard.bind(this)} editInfo={this.state.editInfo} submitEditInfo={this.submitEditInfo} />}
                 <Header location={this.state.baseLink.location_name} tv={this.props.match.params.screen} nav={this.props} />
                 <div className="mainBodyContainer">
                     <div>Current View:
