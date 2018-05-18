@@ -13,7 +13,6 @@ class EditBoard extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props);
         const {editTitle, editSubtitle} = this.props.editInfo;
         this.setState({
             editTitle,
@@ -27,23 +26,31 @@ class EditBoard extends Component {
         });
     }
 
+    submitPrevention(e) {
+        e.preventDefault();
+        this.props.submitEditInfo(this.state.editTitle, this.state.editSubtitle);
+    }
+
     render() {
+
         return (
             <div className="modalBackground" onClick={this.props.closeEditBoard}>
                 <div className="modalArea" onClick={e => e.stopPropagation()}>
                     <h2>Edit board display</h2>
-                    <div>
-                        <label htmlFor="editTitle" className='modalLabel'>Title</label>
-                        <input type="text" value={this.state.editTitle} onChange={(e) => this.handleInputChange(e)} name='editTitle' />
-                    </div>
-                    <div>
-                        <label htmlFor="editSubtitle" className='modalLabel'>Subtitle</label>
-                        <input type="text" value={this.state.editSubtitle} onChange={(e) => this.handleInputChange(e)} name='editSubtitle' />
-                    </div>
-                    <div className="modalButtons">
-                        <button onClick={() => this.props.submitEditInfo(this.props.location, this.state.editTitle, this.props.editTitle)}>Submit</button>
-                        <button onClick={this.props.closeEditBoard}>Cancel</button>
-                    </div>
+                    <form onSubmit={(e) => this.submitPrevention(e)}>
+                        <div>
+                            <label htmlFor="editTitle" className='modalLabel'>Title</label>
+                            <input type="text" value={this.state.editTitle} onChange={(e) => this.handleInputChange(e)} name='editTitle' />
+                        </div>
+                        <div>
+                            <label htmlFor="editSubtitle" className='modalLabel'>Subtitle</label>
+                            <input type="text" value={this.state.editSubtitle} onChange={(e) => this.handleInputChange(e)} name='editSubtitle' />
+                        </div>
+                        <div className="modalButtons">
+                            <button>Submit</button>
+                            <button onClick={this.props.closeEditBoard}>Cancel</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         );
