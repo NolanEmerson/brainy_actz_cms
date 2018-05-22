@@ -34,8 +34,8 @@ class EditBoard extends Component {
     render() {
 
         return (
-            <div className="modalBackground" onClick={this.props.closeEditBoard}>
-                <div className="modalArea" onClick={e => e.stopPropagation()}>
+            <div className="editModalBackground" onClick={this.props.closeEditBoard}>
+                <div className="editModalArea" onClick={e => e.stopPropagation()}>
                     <h2>Edit board display</h2>
                     <form onSubmit={(e) => this.submitPrevention(e)}>
                         <div>
