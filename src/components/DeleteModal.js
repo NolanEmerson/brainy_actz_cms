@@ -11,7 +11,7 @@ class DeleteModal extends Component {
 
     deleteItem(e) {
         e.stopPropagation();
-        console.log('wew lad');
+        this.props.deleteItem(this.props.deleteInfo.location);
     }
 
     render() {
@@ -21,7 +21,7 @@ class DeleteModal extends Component {
         return (
             <div className="deleteModalBackground" onClick={this.props.closeDeleteModal}>
                 <div className="deleteModalArea" onClick={e => e.stopPropagation()}>
-                    Are you sure you want to delete all information for ___?
+                    Are you sure you want to delete all information for {this.props.deleteInfo.location_name}?
                     <div className="modalButtons">
                         <button onClick={this.props.closeDeleteModal}>Return</button>
                         <button onClick={(e) => this.deleteItem(e)}>Delete</button>

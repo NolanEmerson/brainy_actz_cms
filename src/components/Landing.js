@@ -146,6 +146,14 @@ class Landing extends Component {
         });
     }
 
+    deleteInfo(location) {
+        console.log('wew lad', location);
+        base.remove(`locations/${location}`);
+        this.setState({
+            deleteModal: false
+        });
+    }
+
     render() {
 
         const locationMap = Object.keys(this.state.baseLink).map( (item, index) => {
@@ -159,7 +167,7 @@ class Landing extends Component {
         
         return (
             <React.Fragment>
-                {this.state.deleteModal && <DeleteModal closeDeleteModal={this.closeDeleteModal.bind(this)} deleteInfo={this.state.deleteInfo}  />}
+                {this.state.deleteModal && <DeleteModal closeDeleteModal={this.closeDeleteModal.bind(this)} deleteInfo={this.state.deleteInfo} deleteItem={this.deleteInfo.bind(this)} />}
                 {this.state.editModal && <EditModal closeEditModal={this.closeEditModal.bind(this)} editInfo={this.state.editInfo.location_name} submitEditInfo={this.submitEditInfo.bind(this)} location={this.state.editInfo.location} />}
                 <Header nav={this.props} />
                 <div className="mainBodyFlexContainer">
