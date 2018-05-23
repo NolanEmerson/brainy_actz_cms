@@ -3,6 +3,7 @@ import base from '../base';
 
 import Header from './Header';
 import EditModal from './EditModal';
+import DeleteModal from './DeleteModal';
 
 class Location extends Component {
     constructor(props){
@@ -19,6 +20,11 @@ class Location extends Component {
             newTV: '',
             editModal: false,
             editInfo: {
+                location: '',
+                screen: ''
+            },
+            deleteModal: false,
+            deleteInfo: {
                 location: '',
                 screen: ''
             }
@@ -111,19 +117,48 @@ class Location extends Component {
             }
         });
     }
+
+    openDeleteModal(e, screen) {
+        e.stopPropagation();
+
+        const location = this.props.match.params.location;
+
+        this.setState({
+            deleteModal: true,
+            deleteInfo: {
+                location,
+                screen
+            }
+        });
+    }
+
+    closeDeleteModal() {
+        this.setState({
+            deleteModal: false
+        });
+    }
+
+    deleteInfo(location, screen) {
+        console.log('wew lad', location, screen);
+        base.remove(`locations/${location}/walls/${screen}`);
+        this.setState({
+            deleteModal: false
+        });
+    }
     
     render() {
 
         const wallMap = Object.keys(this.state.baseLink.walls).map( (item, index) => {
             return <div key={index} onClick={() => this.moveToLocation(item)} className='locationItem'>
                 <div>{item}</div>
-                <div className="deleteButton"><i className='fas fa-trash-alt'></i></div>
+                <div className="deleteButton" onClick={(e) => this.openDeleteModal(e,item)}><i className='fas fa-trash-alt'></i></div>
                 <div className="editButton" onClick={(e) => this.openEditModal(e,item)}><i className='fas fa-pencil-alt'></i></div>
             </div>
         });
         
         return (
             <React.Fragment>
+                {this.state.deleteModal && <DeleteModal closeDeleteModal={this.closeDeleteModal.bind(this)} displayItem={this.state.deleteInfo.screen} itemToDelete={this.state.deleteInfo.location} deleteItem={this.deleteInfo.bind(this)} />}
                 {this.state.editModal && <EditModal closeEditModal={this.closeEditModal.bind(this)} editInfo={this.state.editInfo.screen} submitEditInfo={this.submitEditInfo.bind(this)} location={this.state.editInfo.location} />}
                 <Header location={this.state.baseLink.location_name} nav={this.props} />
                 <div className="mainBodyFlexContainer">
