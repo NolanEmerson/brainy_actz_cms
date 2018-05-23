@@ -26,8 +26,8 @@ class EditModal extends Component {
 
     render() {
         return (
-            <div className="modalBackground" onClick={this.props.closeEditModal}>
-                <div className="modalArea" onClick={e => e.stopPropagation()}>
+            <div className="editModalBackground" onClick={this.props.closeEditModal}>
+                <div className="editModalArea" onClick={e => e.stopPropagation()}>
                     <h2>Edit information</h2>
                     <input type="text" value={this.state.editInfo} onChange={this.handleInputChange} ></input>
                     <div className="modalButtons">
