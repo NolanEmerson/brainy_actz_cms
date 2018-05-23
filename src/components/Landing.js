@@ -43,7 +43,6 @@ class Landing extends Component {
     }
     
     moveToLocation(item) {
-        console.log(item);
         this.props.history.push(`/${item}`);
     }
 
@@ -147,7 +146,6 @@ class Landing extends Component {
     }
 
     deleteInfo(location) {
-        console.log('wew lad', location);
         base.remove(`locations/${location}`);
         this.setState({
             deleteModal: false
@@ -167,7 +165,7 @@ class Landing extends Component {
         
         return (
             <React.Fragment>
-                {this.state.deleteModal && <DeleteModal closeDeleteModal={this.closeDeleteModal.bind(this)} deleteInfo={this.state.deleteInfo} deleteItem={this.deleteInfo.bind(this)} />}
+                {this.state.deleteModal && <DeleteModal closeDeleteModal={this.closeDeleteModal.bind(this)} displayItem={this.state.deleteInfo.location_name} itemToDelete={this.state.deleteInfo.location} deleteItem={this.deleteInfo.bind(this)} />}
                 {this.state.editModal && <EditModal closeEditModal={this.closeEditModal.bind(this)} editInfo={this.state.editInfo.location_name} submitEditInfo={this.submitEditInfo.bind(this)} location={this.state.editInfo.location} />}
                 <Header nav={this.props} />
                 <div className="mainBodyFlexContainer">
