@@ -150,7 +150,7 @@ class Location extends Component {
                             <div className="boardViewThumb">
                                 {this.determineThumbnail(current_view)}
                             </div>
-                            <div className="boardEditButton" onClick={e => this.openEditBoard(e, current_view)}><i className='fas fa-pencil-alt'></i></div>
+                            {current_view === 'text' ? <div className="boardEditButton" onClick={e => this.openEditBoard(e, current_view)}><i className='fas fa-pencil-alt'></i></div> : ''}
                         </div>
                     </div>
                     {options && <div>

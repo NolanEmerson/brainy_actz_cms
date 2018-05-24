@@ -2,6 +2,7 @@ body {
 	margin: 0;
 	padding: 0;
 	font-family: sans-serif;
+	background-color: #ebebeb;
 }
 
 .mainContainer {
@@ -26,15 +27,28 @@ body {
 .headerContainer {
 	height: 20%;
 	width: 100%;
-	background-color: black;
+	background-color: rgb(15, 15, 15);
 	color: white;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: center;
+	font-size: 2em;
+	position: relative;
+}
+
+.headerLogo {
+	/* position: absolute;
+	top: 10%;
+	left: 5%; */
+	height: 80%;
 }
 
 .landingItem, .locationItem {
 	height: 100px;
 	width: 300px;
 	margin: 50px;
-	background-color: black;
+	background-color: rgb(15, 15, 15);
 	color: white;
 	display: flex;
 	justify-content: center;
@@ -68,13 +82,13 @@ body {
 	right: 2px;
 }
 
-/* ////////////////////////////////////////////////////////////////// SCREENS PAGE ////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////// THUMBNAILS ////////////////////////////////////////////////////////////////// */
 
 .boardViewItem {
 	height: 175px;
 	width: 275px;
 	margin: 20px;
-	background-color: black;
+	background-color: rgb(15, 15, 15);
 	color: white;
 	text-align: center;
 	position: relative;
@@ -104,7 +118,7 @@ body {
 	border-radius: 5px;
 }
 
-/* ////////////////////////////////////////////////////////////////// MODAL AREA ////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////// MODAL SECTION ////////////////////////////////////////////////////////////////// */
 
 .editModalBackground, .deleteModalBackground {
 	height: 100%;
@@ -123,7 +137,7 @@ body {
 	transform: translate(-50%, -50%);
 	height: 50%;
 	width: 50%;
-	background-color: black;
+	background-color: rgb(15, 15, 15);
 	color: white;
 	display: flex;
 	flex-flow: column nowrap;
