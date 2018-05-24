@@ -97,26 +97,26 @@ class Location extends Component {
 
     determineThumbnail(current) {
         let returnValue;
-            switch (current){
-                case 'red':
-                    returnValue = <Red />;
-                    break;
-                case 'green':
-                    returnValue = <Green />
-                    break;
-                case 'blue':
-                    returnValue =  <Blue />
-                    break;
-                case 'text':
-                    returnValue =  <Text title={this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text.text.title} subtitle={this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text.text.subtitle} />
-                    break;
-                case 'room':
-                    returnValue =  <Room />
-                    break;
-                default:
-                    returnValue = 'No current display'
-            }
-            return returnValue;
+        switch (current){
+            case 'red':
+                returnValue = <Red />;
+                break;
+            case 'green':
+                returnValue = <Green />
+                break;
+            case 'blue':
+                returnValue =  <Blue />
+                break;
+            case 'text':
+                returnValue =  <Text title={this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text.text.title} subtitle={this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text.text.subtitle} />
+                break;
+            case 'room':
+                returnValue =  <Room />
+                break;
+            default:
+                returnValue = 'No current display'
+        }
+        return returnValue;
     }
     
     render() {
@@ -150,7 +150,7 @@ class Location extends Component {
                             <div className="boardViewThumb">
                                 {this.determineThumbnail(current_view)}
                             </div>
-                            <div className="boardEditButton" onClick={e => this.openEditBoard(e, current_view)}><i className='fas fa-pencil-alt'></i></div>
+                            {current_view === 'text' ? <div className="boardEditButton" onClick={e => this.openEditBoard(e, current_view)}><i className='fas fa-pencil-alt'></i></div> : ''}
                         </div>
                     </div>
                     {options && <div>
