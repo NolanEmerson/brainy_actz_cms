@@ -13,6 +13,14 @@ body {
 .mainBodyContainer {
 	height: 80%;
 	width: 100%;
+	position: relative;
+}
+
+.mainBodyContainer > button {
+	position: absolute;
+	top: 5px;
+	left: 50%;
+	transform: translateX(-50%);
 }
 
 .mainBodyFlexContainer {
@@ -22,6 +30,14 @@ body {
 	flex-flow: row wrap;
 	justify-content: space-around;
 	align-items: center;
+	position: relative;
+}
+
+.mainBodyFlexContainer > form {
+	position: absolute;
+	top: 5px;
+	left: 50%;
+	transform: translateX(-50%);
 }
 
 .headerContainer {
@@ -35,6 +51,14 @@ body {
 	align-items: center;
 	font-size: 2em;
 	position: relative;
+}
+
+.headerContainer > * {
+	padding-right: 10px;
+}
+
+.headerItem {
+	cursor: pointer;
 }
 
 .headerLogo {
