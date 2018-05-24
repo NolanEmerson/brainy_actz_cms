@@ -97,26 +97,26 @@ class Location extends Component {
 
     determineThumbnail(current) {
         let returnValue;
-            switch (current){
-                case 'red':
-                    returnValue = <Red />;
-                    break;
-                case 'green':
-                    returnValue = <Green />
-                    break;
-                case 'blue':
-                    returnValue =  <Blue />
-                    break;
-                case 'text':
-                    returnValue =  <Text title={this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text.text.title} subtitle={this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text.text.subtitle} />
-                    break;
-                case 'room':
-                    returnValue =  <Room />
-                    break;
-                default:
-                    returnValue = 'No current display'
-            }
-            return returnValue;
+        switch (current){
+            case 'red':
+                returnValue = <Red />;
+                break;
+            case 'green':
+                returnValue = <Green />
+                break;
+            case 'blue':
+                returnValue =  <Blue />
+                break;
+            case 'text':
+                returnValue =  <Text title={this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text.text.title} subtitle={this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text.text.subtitle} />
+                break;
+            case 'room':
+                returnValue =  <Room />
+                break;
+            default:
+                returnValue = 'No current display'
+        }
+        return returnValue;
     }
     
     render() {
