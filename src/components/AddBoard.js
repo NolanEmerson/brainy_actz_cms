@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
 import base from '../base';
 import Header from './Header';
+import Red from './boards/Red';
+import Green from './boards/Green';
+import Blue from './boards/Blue';
+import Text from './boards/Text';
+import Room from './boards/Room';
 
 class AddBoard extends Component {
     constructor(props){
@@ -42,7 +47,6 @@ class AddBoard extends Component {
         let index = newState.baseLink.walls[`${this.props.match.params.screen}`].options.indexOf(item);
 
         newState.baseLink.walls[`${this.props.match.params.screen}`].options.splice(index, 1);
-        console.log(newState.baseLink.walls[`${this.props.match.params.screen}`].options);
 
         this.setState({
             ...newState
@@ -58,26 +62,65 @@ class AddBoard extends Component {
             ...newState
         });
     }
+
+    determineThumbnail(current) {
+        let returnValue;
+
+        switch (current){
+            case 'red':
+                returnValue = <Red />;
+                break;
+            case 'green':
+                returnValue = <Green />
+                break;
+            case 'blue':
+                returnValue =  <Blue />
+                break;
+            case 'text':
+                returnValue =  <Text title={this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text.text.title} subtitle={this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text.text.subtitle} />
+                break;
+            case 'room':
+                returnValue =  <Room />
+                break;
+            default:
+                returnValue = 'No current display'
+        }
+        return returnValue;
+    }
     
     render() {
-        console.log('Add board props: ', this.props);
-        console.log('Add board state: ', this.state);
 
         let {options} = this.state.baseLink.walls[`${this.props.match.params.screen}`] || '';
 
-        if (!options) { options = [''] };
+        if (!options) { options = [undefined] };
 
-        let unusedOptions = this.checkBoardOptions(options);
+        let unusedOptions = [];
+
+        if (options[0] === undefined) {
+            unusedOptions = [''];
+        } else {
+            unusedOptions = this.checkBoardOptions(options);
+        }
 
         let optionsMap = options.map( (item, index) => {
             return (
-                <li key={index} onClick={() => this.removeBoardChoice(item)} >{item}</li>
+                <div key={index} onClick={() => this.removeBoardChoice(item)} className='boardViewItem' >
+                    {item}
+                    <div className="boardViewThumb">
+                        {this.determineThumbnail(item)}
+                    </div>
+                </div>
             )
         });
 
         let unusedMap = unusedOptions.map( (item, index) => {
             return (
-                <li key={index} onClick={() => this.addBoardChoice(item)} >{item}</li>
+                <div key={index} onClick={() => this.addBoardChoice(item)} className='boardViewItem' >
+                    {item}
+                    <div className="boardViewThumb">
+                        {this.determineThumbnail(item)}
+                    </div>
+                </div>
             )
         });
 
