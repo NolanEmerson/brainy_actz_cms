@@ -35,7 +35,7 @@ class EditBoard extends Component {
 
         return (
             <div className="editModalBackground" onClick={this.props.closeEditBoard}>
-                <div className="editModalArea" onClick={e => e.stopPropagation()}>
+                <div className="editModalBoardArea" onClick={e => e.stopPropagation()}>
                     <h2>Edit board display</h2>
                     <form onSubmit={(e) => this.submitPrevention(e)}>
                         <div>
@@ -46,9 +46,9 @@ class EditBoard extends Component {
                             <label htmlFor="editSubtitle" className='modalLabel'>Subtitle</label>
                             <input type="text" value={this.state.editSubtitle} onChange={(e) => this.handleInputChange(e)} name='editSubtitle' />
                         </div>
-                        <div className="modalButtons">
-                            <button>Submit</button>
+                        <div className="modalBoardButtons">
                             <button onClick={this.props.closeEditBoard}>Cancel</button>
+                            <button>Submit</button>
                         </div>
                     </form>
                 </div>

@@ -13,6 +13,7 @@ class Landing extends Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.addNewLocation = this.addNewLocation.bind(this);
         this.openEditModal = this.openEditModal.bind(this);
+        this.openDeleteModal = this.openDeleteModal.bind(this);
 
         this.state = {
             baseLink: {},
