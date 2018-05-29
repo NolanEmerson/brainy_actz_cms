@@ -155,6 +155,8 @@ class Landing extends Component {
 
     render() {
 
+        console.log(this.state);
+
         const locationMap = Object.keys(this.state.baseLink).map( (item, index) => {
             const locationName = this.state.baseLink[`${item}`].location_name;
             return <div key={index} onClick={() => this.moveToLocation(item)} className='landingItem'>
