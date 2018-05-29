@@ -80,7 +80,7 @@ class AddBoard extends Component {
                 returnValue =  <Text title={this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text.text.title} subtitle={this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text.text.subtitle} />
                 break;
             case 'room':
-                returnValue =  <Room />
+                returnValue =  <Room title={this.props.match.params.screen} />
                 break;
             default:
                 returnValue = 'No current display'

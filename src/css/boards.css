@@ -14,3 +14,13 @@
     flex-direction: row;
     justify-content: space-around;
 }
+
+.roomBoard {
+    background-position: center;
+    background-size: cover;
+}
+
+.roomBoard > * {
+    color: white;
+    text-shadow: 3px 3px black, 4px 4px black;
+}

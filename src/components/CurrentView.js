@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import base from '../base';
 
-import Header from './Header';
+// import Header from './Header';
 import Red from './boards/Red';
 import Green from './boards/Green';
 import Blue from './boards/Blue';
@@ -48,7 +48,7 @@ class CurrentView extends Component {
                     returnValue =  <Text title={this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text.text.title} subtitle={this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text.text.subtitle} />
                     break;
                 case 'room':
-                    returnValue =  <Room />
+                    returnValue =  <Room title={this.props.match.params.screen} />
                     break;
                 default:
                     returnValue = 'something broke'
@@ -61,8 +61,8 @@ class CurrentView extends Component {
 
         return (
             <React.Fragment>
-                <Header location={this.state.baseLink.location_name} tv={this.props.match.params.screen} currentview='Current View' nav={this.props} />
-                <div className="mainBodyContainer">
+                {/* <Header location={this.state.baseLink.location_name} tv={this.props.match.params.screen} currentview='Current View' nav={this.props} /> */}
+                <div className="mainContainer">
                     {this.determineCurrentView()}
                 </div>
             </React.Fragment>
