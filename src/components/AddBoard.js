@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import base from '../base';
+
 import Header from './Header';
 import Red from './boards/Red';
 import Green from './boards/Green';
@@ -80,7 +81,7 @@ class AddBoard extends Component {
                 returnValue =  <Text title={this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text.text.title} subtitle={this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text.text.subtitle} />
                 break;
             case 'room':
-                returnValue =  <Room title={this.props.match.params.screen} />
+                returnValue =  <Room title={this.props.match.params.screen} location={this.state.baseLink.location_name} />
                 break;
             default:
                 returnValue = 'No current display'
