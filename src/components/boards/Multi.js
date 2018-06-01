@@ -33,17 +33,25 @@ class Multi extends Component{
             case 'Irvine, CA':
                 return (
                     <React.Fragment>
-                        <Room title='The Secrets of The Master' location={location} />
-                        <Room title='The Great Car Heist' location={location} />
-                        <Room title='Mystery at the Lost Point Lodge' location={location} />
+                        <div className='multiHolder'>
+                            <Room title='The Secrets of The Master' location={location} />
+                        </div>
+                        <div className='multiHolder'>
+                            <Room title='The Great Car Heist' location={location} />
+                        </div>
+                        <div className='multiHolder'>
+                            <Room title='Mystery at the Lost Point Lodge' location={location} />
+                        </div>                  
                     </React.Fragment>
-                )
+                );
         }
     }
 
     render() {
         return (
-            <div>{this.determineRooms(this.state.baseLink.location_name)}</div>
+            <div className='multiFlexContainer'>
+                {this.determineRooms(this.state.baseLink.location_name)}
+            </div>
         );
     }
 }
