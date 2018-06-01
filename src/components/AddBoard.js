@@ -7,6 +7,7 @@ import Green from './boards/Green';
 import Blue from './boards/Blue';
 import Text from './boards/Text';
 import Room from './boards/Room';
+import Multi from './boards/Multi';
 
 class AddBoard extends Component {
     constructor(props){
@@ -31,7 +32,7 @@ class AddBoard extends Component {
     }
 
     checkBoardOptions(array = ['']) {
-        let unusedOptions = ['red', 'green', 'blue', 'text', 'room'];
+        let unusedOptions = ['red', 'green', 'blue', 'text', 'room', 'multi'];
 
         for (let i=0; i<array.length; i++) {
             if (unusedOptions.indexOf(array[i]) !== -1) {
@@ -82,6 +83,9 @@ class AddBoard extends Component {
                 break;
             case 'room':
                 returnValue =  <Room title={this.props.match.params.screen} location={this.state.baseLink.location_name} />
+                break;
+            case 'multi':
+                returnValue = <Multi location={this.props.match.params.location} />
                 break;
             default:
                 returnValue = 'No current display'
