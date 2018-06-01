@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import base from '../base';
 
-// import Header from './Header';
 import Red from './boards/Red';
 import Green from './boards/Green';
 import Blue from './boards/Blue';
 import Text from './boards/Text';
 import Room from './boards/Room';
+import Multi from './boards/Multi';
 
 class CurrentView extends Component {
     constructor(props){
@@ -50,6 +50,9 @@ class CurrentView extends Component {
                 case 'room':
                     returnValue =  <Room title={this.props.match.params.screen} location={this.state.baseLink.location_name} />
                     break;
+                case 'multi':
+                    returnValue = <Multi location={this.props.match.params.location} />
+                    break;
                 default:
                     returnValue = 'something broke'
             }
@@ -61,7 +64,6 @@ class CurrentView extends Component {
 
         return (
             <React.Fragment>
-                {/* <Header location={this.state.baseLink.location_name} tv={this.props.match.params.screen} currentview='Current View' nav={this.props} /> */}
                 <div className="mainContainer">
                     {this.determineCurrentView()}
                 </div>

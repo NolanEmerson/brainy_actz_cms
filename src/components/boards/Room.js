@@ -3,13 +3,6 @@ import '../../css/boards.css';
 import back from '../../assets/images/room_back.jpg'
 
 class Room extends Component {
-    constructor(props){
-        super(props);
-
-        this.state = {
-
-        }
-    }
 
     determineVideoLocation(){
         switch(this.props.location){

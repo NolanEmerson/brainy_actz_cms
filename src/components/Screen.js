@@ -8,6 +8,7 @@ import Green from './boards/Green';
 import Blue from './boards/Blue';
 import Text from './boards/Text';
 import Room from './boards/Room';
+import Multi from './boards/Multi';
 
 class Location extends Component {
     constructor(props){
@@ -112,6 +113,9 @@ class Location extends Component {
                 break;
             case 'room':
                 returnValue =  <Room title={this.props.match.params.screen} location={this.state.baseLink.location_name} />
+                break;
+            case 'multi':
+                returnValue = <Multi location={this.props.match.params.location} />
                 break;
             default:
                 returnValue = 'No current display'
