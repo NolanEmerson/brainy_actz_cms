@@ -40,3 +40,21 @@
     margin: 20px;
     overflow: hidden;
 }
+
+.multiModal {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.multiModal > span {
+    color: white;
+    font-size: 40px;
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    cursor: pointer;
+}
