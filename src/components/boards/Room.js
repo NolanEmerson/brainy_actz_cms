@@ -87,7 +87,6 @@ class Room extends Component {
     }
 
     render() {
-
         return (
             <div className="roomBoard" style={{backgroundImage: `url(${back})`}}>
                 <h1 className="roomBoardTitle">{this.props.title}</h1>
