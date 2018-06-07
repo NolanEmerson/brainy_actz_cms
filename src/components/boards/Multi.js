@@ -44,6 +44,70 @@ class Multi extends Component{
                         </div>                  
                     </React.Fragment>
                 );
+            case 'San Diego, CA':
+                return (
+                    <React.Fragment>
+                        <div className='multiHolder'>
+                            <Room title='The Barbershop Backlash' location={location} />
+                        </div>
+                        <div className='multiHolder'>
+                            <Room title='The Great Carnival Challenge' location={location} />
+                        </div>
+                    </React.Fragment>
+                );
+            case 'Temecula, CA':
+                return (
+                    <React.Fragment>
+                        <div className='multiHolder'>
+                            <Room title='The Great Pirate Escape' location={location} />
+                        </div>
+                        <div className='multiHolder'>
+                            <Room title='The Legacy' location={location} />
+                        </div>
+                        <div className='multiHolder'>
+                            <Room title='The Lost Jungle Safari' location={location} />
+                        </div>                  
+                    </React.Fragment>
+                );
+            case 'Reno, NV':
+                return (
+                    <React.Fragment>
+                        <div className='multiHolder'>
+                            <Room title='The Secrets of The Master' location={location} />
+                        </div>
+                        <div className='multiHolder'>
+                            <Room title='The Legacyc' location={location} />
+                        </div>
+                        <div className='multiHolder'>
+                            <Room title="Santa's Cabin" location={location} />
+                        </div>                  
+                    </React.Fragment>
+                );
+            case 'Las Vegas, NV':
+                return (
+                    <React.Fragment>
+                        <div className='multiHolder'>
+                            <Room title='The Secrets of The Master' location={location} />
+                        </div>
+                        <div className='multiHolder'>
+                            <Room title='The Legacy' location={location} />
+                        </div>
+                        <div className='multiHolder'>
+                            <Room title='The Great Car Heist' location={location} />
+                        </div>                  
+                        <div className='multiHolder'>
+                            <Room title='High Roller' location={location} />
+                        </div>  
+                        <div className='multiHolder'>
+                            <Room title="The Smokin' Gun" location={location} />
+                        </div>  
+                        <div className='multiHolder'>
+                            <Room title='Backstage VIP Pass' location={location} />
+                        </div>  
+                    </React.Fragment>
+                );
+            default:
+                return null;
         }
     }
 
