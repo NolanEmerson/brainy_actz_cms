@@ -70,22 +70,25 @@ class AddBoard extends Component {
 
         switch (current){
             case 'red':
-                returnValue = <Red />;
+                returnValue = 'Red'
                 break;
             case 'green':
-                returnValue = <Green />
+                returnValue = 'Green'
                 break;
             case 'blue':
-                returnValue =  <Blue />
+                returnValue =  'Blue'
                 break;
             case 'text':
-                returnValue =  <Text title={this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text.text.title} subtitle={this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text.text.subtitle} />
+                returnValue =  'Text board'
+                // <Text title={this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text.text.title} subtitle={this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text.text.subtitle} />
                 break;
             case 'room':
-                returnValue =  <Room title={this.props.match.params.screen} location={this.state.baseLink.location_name} />
+                returnValue =  'Room board'
+                // <Room title={this.props.match.params.screen} location={this.state.baseLink.location_name} />
                 break;
             case 'multi':
-                returnValue = <Multi location={this.props.match.params.location} />
+                returnValue = 'Multi board'
+                // <Multi location={this.props.match.params.location} />
                 break;
             default:
                 returnValue = 'No current display'
@@ -110,9 +113,8 @@ class AddBoard extends Component {
         let optionsMap = options.map( (item, index) => {
             return (
                 <div key={index} onClick={() => this.removeBoardChoice(item)} className='boardViewItem' >
-                    {item}
                     <div className="boardViewThumb">
-                        {this.determineThumbnail(item)}
+                        <h1>{this.determineThumbnail(item)}</h1>
                     </div>
                 </div>
             )
@@ -121,9 +123,8 @@ class AddBoard extends Component {
         let unusedMap = unusedOptions.map( (item, index) => {
             return (
                 <div key={index} onClick={() => this.addBoardChoice(item)} className='boardViewItem' >
-                    {item}
                     <div className="boardViewThumb">
-                        {this.determineThumbnail(item)}
+                        <h1>{this.determineThumbnail(item)}</h1>
                     </div>
                 </div>
             )
@@ -135,13 +136,13 @@ class AddBoard extends Component {
                 <div className="mainBodyContainer">
                     <div className='boardOptionsArea'>
                         <div>
-                            Currently selectable boards
+                            Currently available boards:
                             <ul>
                                 {optionsMap}
                             </ul>
                         </div>
                         <div>
-                            Unselectable boards
+                            Unavailable boards:
                             <ul>
                                 {unusedMap}
                             </ul>

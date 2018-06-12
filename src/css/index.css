@@ -155,6 +155,10 @@ button {
     border-color: rgb(75, 75, 75);
 }
 
+.mainBodyContainer > div:nth-child(1) {
+	border-bottom: 1px solid rgb(30, 30, 30);
+}
+
 /* ////////////////////////////////////////////////////////////////// THUMBNAILS ////////////////////////////////////////////////////////////////// */
 
 .boardViewItem {

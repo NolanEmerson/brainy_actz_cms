@@ -100,7 +100,7 @@ class Location extends Component {
         let returnValue;
         switch (current){
             case 'red':
-                returnValue = 'Red';
+                returnValue = 'Red'
                 break;
             case 'green':
                 returnValue = 'Green'
