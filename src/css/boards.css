@@ -10,6 +10,15 @@
     text-align: center;
 }
 
+.textBoard {
+    background: linear-gradient(-45deg, rgb(92, 61, 231), rgb(116, 38, 116));
+    color: white;
+}
+
+.textBoard > * {
+    text-shadow: 3px 3px black, 4px 4px black;
+}
+
 .boardOptionsArea {
     display: flex;
     flex-direction: row;
