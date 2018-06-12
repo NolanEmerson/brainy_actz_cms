@@ -23,6 +23,11 @@ body {
 	transform: translateX(-50%);
 }
 
+.mainBodyContainer > button:hover {
+	background-color: rgb(75, 75, 75);
+	color: #d8f800;
+}
+
 .mainBodyFlexContainer {
 	height: 80%;
 	width: 100%;
@@ -38,6 +43,11 @@ body {
 	top: 5px;
 	left: 50%;
 	transform: translateX(-50%);
+}
+
+.mainBodyFlexContainer > form > button:hover {
+	background-color: rgb(75, 75, 75);
+	color: #d8f800;
 }
 
 .headerContainer {
@@ -137,7 +147,7 @@ button {
 }
 
 .mainBodyFlexContainer > form input {
-	color: white;
+	color: #dfdfdf;
     background-color: #b1b1b1;
 	border-color: #afafaf;
 	text-align: center;
@@ -145,13 +155,13 @@ button {
 
 .mainBodyFlexContainer > form button {
 	background-color: rgb(50, 50, 50);
-    color: white;
+    color: #dfdfdf;
     border-color: rgb(75, 75, 75);
 }
 
 .mainBodyContainer > button {
 	background-color: rgb(50, 50, 50);
-    color: white;
+    color: #dfdfdf;
     border-color: rgb(75, 75, 75);
 }
 
@@ -251,6 +261,10 @@ button {
 	border: 2px solid rgb(240, 54, 54);
 }
 
+.editModalArea > input {
+	text-align: center;
+}
+
 .editModalArea > div > input {
 	text-align: center;
 }
@@ -264,6 +278,34 @@ button {
 	width: 30%;
 	display: flex;
 	justify-content: space-around;
+}
+
+.modalButtons > button {
+	background-color: rgb(35, 36, 131);
+	color: #dfdfdf;
+	border-color: rgb(48, 50, 161);
+}
+
+.modalButtons > button:hover {
+	background-color: rgb(48, 50, 161);
+}
+
+.modalButtons > .modalDeleteButton {
+	background-color: rgb(121, 31, 31);
+	border-color: rgb(168, 46, 46);
+}
+
+.modalButtons > .modalDeleteButton:hover {
+	background-color: rgb(168, 46, 46);
+}
+
+.modalButtons > .modalSubmitButton {
+	background-color: rgb(40, 107, 40);
+	border-color: rgb(47, 121, 47);
+}
+
+.modalButtons > .modalSubmitButton:hover {
+	background-color: rgb(47, 121, 47);
 }
 
 .modalBoardButtons {

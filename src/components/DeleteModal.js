@@ -22,7 +22,7 @@ class DeleteModal extends Component {
                     Are you sure you want to delete all information for {this.props.displayItem}?
                     <div className="modalButtons">
                         <button onClick={this.props.closeDeleteModal}>Return</button>
-                        <button onClick={(e) => this.deleteItem(e)}>Delete</button>
+                        <button onClick={(e) => this.deleteItem(e)} className='modalDeleteButton'>Delete</button>
                     </div>
                 </div>
             </div>

@@ -2,12 +2,6 @@ import React, {Component} from 'react';
 import base from '../base';
 
 import Header from './Header';
-import Red from './boards/Red';
-import Green from './boards/Green';
-import Blue from './boards/Blue';
-import Text from './boards/Text';
-import Room from './boards/Room';
-import Multi from './boards/Multi';
 
 class AddBoard extends Component {
     constructor(props){
