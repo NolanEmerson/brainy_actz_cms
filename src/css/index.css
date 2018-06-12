@@ -72,6 +72,7 @@ body {
 	height: 100px;
 	width: 300px;
 	margin: 50px;
+	border-radius: 5px;
 	background-color: rgb(30, 30, 30);
 	color: #dfdfdf;
 	display: flex;
@@ -90,36 +91,39 @@ body {
 .deleteButton, .editButton {
 	height: 45%;
 	width: 14%;
+	background-color: rgb(30, 30, 30);
 	position: absolute;
 	box-sizing: border-box;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	border-radius: 5px;
+	border-radius: 50%;
 }
 
 .deleteButton {
-	color: red;
-	border: 1px solid red;
-	top: 2px;
-	right: 2px;
+	color: rgb(240, 54, 54);
+	border: 2px solid rgb(240, 54, 54);
+	top: 0;
+	right: 0;
+	transform: translate(30%, -30%);
 }
 
 .deleteButton:hover {
 	color: black;
-	background-color: red;
+	background-color: rgb(240, 54, 54);
 }
 
 .editButton {
-	color: yellow;
-	border: 1px solid yellow;
-	bottom: 2px;
-	right: 2px;
+	color: rgb(243, 243, 75);
+	border: 2px solid rgb(243, 243, 75);
+	bottom: 0;
+	right: 0;
+	transform: translate(30%, 30%);
 }
 
 .editButton:hover {
 	color: black;
-	background-color: yellow;
+	background-color: rgb(243, 243, 75);
 }
 
 button {
@@ -157,6 +161,7 @@ button {
 	height: 175px;
 	width: 275px;
 	margin: 20px;
+	border-radius: 5px;
 	background-color: rgb(30, 30, 30);
 	color: #dfdfdf;
 	text-align: center;
@@ -177,6 +182,7 @@ button {
 	position: absolute;
 	bottom: 10px;
 	left: 10px;
+	border-radius: 5px;
 	overflow: hidden;
 }
 
@@ -188,16 +194,18 @@ button {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	color: yellow;
-	border: 1px solid yellow;
-	bottom: 2px;
-	right: 2px;
-	border-radius: 5px;
+	color: rgb(243, 243, 75);
+	border: 2px solid rgb(243, 243, 75);
+	bottom: 0;
+	right: 0;
+	border-radius: 50%;
+	transform: translate(30%, 30%);
+	background-color: rgb(30, 30, 30);
 }
 
 .boardEditButton:hover {
 	color: black;
-	background-color: yellow;
+	background-color: rgb(243, 243, 75);
 }
 
 /* ////////////////////////////////////////////////////////////////// MODAL SECTION ////////////////////////////////////////////////////////////////// */
@@ -229,11 +237,11 @@ button {
 }
 
 .editModalArea {
-	border: 2px solid yellow;
+	border: 2px solid rgb(243, 243, 75);
 }
 
 .deleteModalArea {
-	border: 2px solid red;
+	border: 2px solid rgb(240, 54, 54);
 }
 
 .editModalArea > div > input {
@@ -258,7 +266,7 @@ button {
 
 .editModalBoardArea {
 	justify-content: center;
-	border: 1px solid yellow;
+	border: 1px solid rgb(243, 243, 75);
 }
 
 .editModalBoardArea > form input {
