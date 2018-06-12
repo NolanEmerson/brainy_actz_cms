@@ -100,22 +100,25 @@ class Location extends Component {
         let returnValue;
         switch (current){
             case 'red':
-                returnValue = <Red />;
+                returnValue = 'Red';
                 break;
             case 'green':
-                returnValue = <Green />
+                returnValue = 'Green'
                 break;
             case 'blue':
-                returnValue =  <Blue />
+                returnValue =  'Blue'
                 break;
             case 'text':
-                returnValue =  <Text title={this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text.text.title} subtitle={this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text.text.subtitle} />
+                returnValue =  'Text board'
+                // <Text title={this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text.text.title} subtitle={this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text.text.subtitle} />
                 break;
             case 'room':
-                returnValue =  <Room title={this.props.match.params.screen} location={this.state.baseLink.location_name} />
+                returnValue =  'Room board'
+                // <Room title={this.props.match.params.screen} location={this.state.baseLink.location_name} />
                 break;
             case 'multi':
-                returnValue = <Multi location={this.props.match.params.location} />
+                returnValue = 'Multi board'
+                // <Multi location={this.props.match.params.location} />
                 break;
             default:
                 returnValue = 'No current display'
@@ -133,9 +136,8 @@ class Location extends Component {
             optionsMap = options.map( (item, index) => {
                 return (
                     <div key={index} onClick={() => this.changeCurrentView(item)} className='boardViewItem'>
-                        {item}
                         <div className="boardViewThumb">
-                            {this.determineThumbnail(item)}
+                            <h1>{this.determineThumbnail(item)}</h1>
                         </div>
                         {item === 'text' ? <div className="boardEditButton" onClick={e => this.openEditBoard(e, item)}><i className='fas fa-pencil-alt'></i></div> : ''}
                     </div>
@@ -148,11 +150,11 @@ class Location extends Component {
                 {this.state.editBoard && <EditBoard closeEditBoard={this.closeEditBoard.bind(this)} editInfo={this.state.editInfo} submitEditInfo={this.submitEditInfo} />}
                 <Header location={this.state.baseLink.location_name} tv={this.props.match.params.screen} nav={this.props} />
                 <div className="mainBodyContainer">
-                    <div>Current View:
+                    <div>
+                        Current View: <br />
                         <div className="boardViewItem" onClick={this.moveToLocation}>
-                            {current_view}
                             <div className="boardViewThumb">
-                                {this.determineThumbnail(current_view)}
+                                <h1>{this.determineThumbnail(current_view)}</h1>
                             </div>
                             {current_view === 'text' ? <div className="boardEditButton" onClick={e => this.openEditBoard(e, current_view)}><i className='fas fa-pencil-alt'></i></div> : ''}
                         </div>

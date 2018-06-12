@@ -180,10 +180,13 @@ button {
 	height: 80%;
 	width: 80%;
 	position: absolute;
-	bottom: 10px;
-	left: 10px;
+	top: 10%;
+	left: 10%;
 	border-radius: 5px;
 	overflow: hidden;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
 }
 
 .boardEditButton {
