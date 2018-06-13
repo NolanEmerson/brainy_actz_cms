@@ -14,6 +14,7 @@ class Landing extends Component {
         this.addNewLocation = this.addNewLocation.bind(this);
         this.openEditModal = this.openEditModal.bind(this);
         this.openDeleteModal = this.openDeleteModal.bind(this);
+        this.resetInputStyle = this.resetInputStyle.bind(this);
 
         this.state = {
             baseLink: {},
@@ -27,6 +28,10 @@ class Landing extends Component {
             deleteInfo : {
                 location: '',
                 location_name: ''
+            },
+            inputStyle: {
+                borderColor: '#afafaf',
+                borderStyle: 'inset'
             }
         }
     }
@@ -52,6 +57,16 @@ class Landing extends Component {
         e.preventDefault();
 
         let {newLocation} = this.state
+
+        if (newLocation === '') {
+            this.setState({
+                inputStyle: {
+                    borderColor: 'red',
+                    borderStyle: 'solid'
+                }
+            });
+            return;
+        }
 
         let inputObject = {
             location_name: newLocation,
@@ -84,9 +99,22 @@ class Landing extends Component {
         }
 
         this.setState({
-            newLocation: ''
+            newLocation: '',
+            inputStyle: {
+                borderColor: '#afafaf',
+                borderStyle: 'inset'
+            }
         });
         base.push('/locations', {data: inputObject});
+    }
+    
+    resetInputStyle() {
+        this.setState({
+            inputStyle: {
+                borderColor: '#afafaf',
+                borderStyle: 'inset'
+            }
+        });
     }
 
     handleInputChange(e) {
@@ -155,8 +183,6 @@ class Landing extends Component {
 
     render() {
 
-        console.log(this.state);
-
         const locationMap = Object.keys(this.state.baseLink).map( (item, index) => {
             const locationName = this.state.baseLink[`${item}`].location_name;
             return <div key={index} onClick={() => this.moveToLocation(item)} className='landingItem'>
@@ -174,7 +200,7 @@ class Landing extends Component {
                 <div className="mainBodyFlexContainer">
                     {locationMap}
                     <form onSubmit={this.addNewLocation}>
-                        <input type="text" value={this.state.newLocation} onChange={this.handleInputChange} placeholder='New location name' />
+                        <input style={this.state.inputStyle} type="text" value={this.state.newLocation} onChange={this.handleInputChange} onFocus={this.resetInputStyle} placeholder='New location name' />
                         <button>Add location</button>
                     </form>
                 </div>
