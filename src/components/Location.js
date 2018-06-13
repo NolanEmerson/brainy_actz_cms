@@ -12,6 +12,7 @@ class Location extends Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.addNewTV = this.addNewTV.bind(this);
         this.openEditModal = this.openEditModal.bind(this);
+        this.resetInputStyle = this.resetInputStyle.bind(this);
         
         this.state = {
             baseLink: {
@@ -27,6 +28,10 @@ class Location extends Component {
             deleteInfo: {
                 location: '',
                 screen: ''
+            },
+            inputStyle: {
+                borderColor: '#afafaf',
+                borderStyle: 'inset'
             }
         }
     }
@@ -95,6 +100,16 @@ class Location extends Component {
 
         let {newTV} = this.state;
 
+        if (newTV === '') {
+            this.setState({
+                inputStyle: {
+                    borderColor: 'red',
+                    borderStyle: 'solid'
+                }
+            });
+            return;
+        }
+
         let inputObject = {
             [`${newTV}`]: {
                 current_view: '',
@@ -114,6 +129,19 @@ class Location extends Component {
                 walls: {
                     ...inputObject
                 }
+            },
+            inputStyle: {
+                borderColor: '#afafaf',
+                borderStyle: 'inset'
+            }
+        });
+    }
+
+    resetInputStyle() {
+        this.setState({
+            inputStyle: {
+                borderColor: '#afafaf',
+                borderStyle: 'inset'
             }
         });
     }
@@ -139,7 +167,6 @@ class Location extends Component {
     }
 
     deleteInfo(location, screen) {
-        console.log('wew lad', location, screen);
         base.remove(`locations/${location}/walls/${screen}`);
         this.setState({
             deleteModal: false
@@ -164,7 +191,7 @@ class Location extends Component {
                 <div className="mainBodyFlexContainer">
                     {wallMap}
                     <form onSubmit={this.addNewTV}>
-                        <input type="text" value={this.state.newTV} onChange={this.handleInputChange} placeholder='New tv name' />
+                        <input type="text" style={this.state.inputStyle} onFocus={this.resetInputStyle} value={this.state.newTV} onChange={this.handleInputChange} placeholder='New tv name' />
                         <button>Add tv</button>
                     </form>
                 </div>
