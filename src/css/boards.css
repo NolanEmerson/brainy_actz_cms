@@ -25,6 +25,10 @@
     justify-content: space-around;
 }
 
+.mainBodyContainer > .boardOptionsArea {
+    border-bottom: none !important;
+}
+
 .boardOptionsArea > div:nth-child(1) {
     border-right: 1px solid rgb(30, 30, 30);
 }
