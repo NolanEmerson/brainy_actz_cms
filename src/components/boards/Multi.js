@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import '../../css/boards.css';
 import base from '../../base';
 
-import Room from './Room';
 import MultiModal from './MultiModal';
 
 class Multi extends Component{
