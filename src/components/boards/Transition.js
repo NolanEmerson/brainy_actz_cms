@@ -18,7 +18,9 @@ class Transition extends Component {
             baseLink: {
                 transition_options: []
             },
-            currentDisplay: 0
+            currentDisplay: 0,
+            transitioning: false,
+            opacity: 0
         };
     }
 
@@ -36,18 +38,28 @@ class Transition extends Component {
     }
 
     updateDisplay() {
-        if (this.state.currentDisplay === this.state.baseLink.transition_options.length -1){
-            let currentDisplay = 0;
+        this.setState({
+            opacity: 100
+        });
+
+        setTimeout( () => {
+            if (this.state.currentDisplay === this.state.baseLink.transition_options.length -1){
+                let currentDisplay = 0;
+                this.setState({
+                    currentDisplay
+                });
+            } else {
+                let {currentDisplay} = this.state;
+                currentDisplay = currentDisplay + 1;
+                this.setState({
+                    currentDisplay
+                });
+            }
             this.setState({
-                currentDisplay
-            });
-        } else {
-            let {currentDisplay} = this.state;
-            currentDisplay = currentDisplay + 1;
-            this.setState({
-                currentDisplay
-            });
-        }
+                opacity: 0
+            })
+        }, 500)
+        
     }
 
     render() {
@@ -73,9 +85,12 @@ class Transition extends Component {
         }
 
         return (
-            <React.Fragment>
+            <div className='transitionBoard'>
                 {returnValue}
-            </React.Fragment>
+                <div className="nextDisplay" style={{opacity: this.state.opacity}}>
+
+                </div>
+            </div>
         );
     }
 }

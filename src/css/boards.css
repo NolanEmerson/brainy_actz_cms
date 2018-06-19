@@ -84,3 +84,22 @@
     left: 5%;
     cursor: pointer;
 }
+
+.transitionBoard {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.nextDisplay {
+    height: 100%;
+    width: 100%;
+    background-color: hotpink;
+    position: absolute;
+    top: 0;
+    right: 0;
+    pointer-events: none;
+    transition: opacity .5s ease-in-out;
+    -moz-transition: opacity .5s ease-in-out;
+    -webkit-transition: opacity .5s ease-in-out;
+}
