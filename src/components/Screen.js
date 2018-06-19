@@ -19,8 +19,8 @@ class Location extends Component {
             },
             editBoard: false,
             editInfo: {
-                editTitle: '',
-                editSubtitle: ''
+                editFirstItem: '',
+                editSecondItem: ''
             },
             itemToEdit: ''
         }
@@ -60,13 +60,22 @@ class Location extends Component {
     openEditBoard(e, editItem){
         e.stopPropagation();
 
-        const editTitle = this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text[`${editItem}`].title;
-        const editSubtitle = this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text[`${editItem}`].subtitle;
+        let editFirstItem = '';
+        let editSecondItem = '';
+
+        if (editItem === 'text') {
+            editFirstItem = this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text[`${editItem}`].title;
+            editSecondItem = this.state.baseLink.walls[`${this.props.match.params.screen}`].display_text[`${editItem}`].subtitle;
+        } else if (editItem === 'room') {
+            editFirstItem = this.state.baseLink.walls[`${this.props.match.params.screen}`].room_options.background;
+            editSecondItem = this.state.baseLink.walls[`${this.props.match.params.screen}`].room_options.video;
+        }
+        
 
         this.setState({
             editBoard: true,
             editInfo: {
-                editTitle, editSubtitle
+                editFirstItem, editSecondItem
             },
             itemToEdit: editItem
         });
@@ -78,11 +87,16 @@ class Location extends Component {
         });
     }
 
-    submitEditInfo(title, subtitle) {
+    submitEditInfo(firstItem, secondItem, itemToEdit) {
         const newState = {...this.state};
 
-        newState.baseLink.walls[`${this.props.match.params.screen}`].display_text[`${this.state.itemToEdit}`].title = title;
-        newState.baseLink.walls[`${this.props.match.params.screen}`].display_text[`${this.state.itemToEdit}`].subtitle = subtitle;
+        if (itemToEdit === 'text') {
+            newState.baseLink.walls[`${this.props.match.params.screen}`].display_text[`${itemToEdit}`].title = firstItem;
+            newState.baseLink.walls[`${this.props.match.params.screen}`].display_text[`${itemToEdit}`].subtitle = secondItem;
+        } else if (itemToEdit === 'room') {
+            newState.baseLink.walls[`${this.props.match.params.screen}`].room_options.background = firstItem;
+            newState.baseLink.walls[`${this.props.match.params.screen}`].room_options.video = secondItem;
+        }
 
         this.setState({
             ...newState,
@@ -133,7 +147,7 @@ class Location extends Component {
                         <div className="boardViewThumb">
                             <h1>{this.determineThumbnail(item)}</h1>
                         </div>
-                        {item === 'text' ? <div className="boardEditButton" onClick={e => this.openEditBoard(e, item)}><i className='fas fa-pencil-alt'></i></div> : ''}
+                        {item === 'text' || item === 'room' ? <div className="boardEditButton" onClick={e => this.openEditBoard(e, item)}><i className='fas fa-pencil-alt'></i></div> : ''}
                     </div>
                 )
             });
@@ -141,7 +155,7 @@ class Location extends Component {
 
         return (
             <React.Fragment>
-                {this.state.editBoard && <EditBoard closeEditBoard={this.closeEditBoard.bind(this)} editInfo={this.state.editInfo} submitEditInfo={this.submitEditInfo} />}
+                {this.state.editBoard && <EditBoard closeEditBoard={this.closeEditBoard.bind(this)} editInfo={this.state.editInfo} submitEditInfo={this.submitEditInfo} itemToEdit={this.state.itemToEdit} />}
                 <Header location={this.state.baseLink.location_name} tv={this.props.match.params.screen} nav={this.props} />
                 <div className="mainBodyContainer">
                     <div>
@@ -150,7 +164,7 @@ class Location extends Component {
                             <div className="boardViewThumb">
                                 <h1>{this.determineThumbnail(current_view)}</h1>
                             </div>
-                            {current_view === 'text' ? <div className="boardEditButton" onClick={e => this.openEditBoard(e, current_view)}><i className='fas fa-pencil-alt'></i></div> : ''}
+                            {current_view === 'text' || current_view === 'room' ? <div className="boardEditButton" onClick={e => this.openEditBoard(e, current_view)}><i className='fas fa-pencil-alt'></i></div> : ''}
                         </div>
                     </div>
                     {options && <div>

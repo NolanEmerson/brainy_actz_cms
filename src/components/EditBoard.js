@@ -7,16 +7,16 @@ class EditBoard extends Component {
         this.handleInputChange = this.handleInputChange.bind(this);
 
         this.state = {
-            editTitle: '',
-            editSubtitle: ''
+            editFirstItem: '',
+            editSecondItem: ''
         }
     }
 
     componentDidMount() {
-        const {editTitle, editSubtitle} = this.props.editInfo;
+        const {editFirstItem, editSecondItem} = this.props.editInfo;
         this.setState({
-            editTitle,
-            editSubtitle
+            editFirstItem,
+            editSecondItem
         });
     }
 
@@ -28,23 +28,23 @@ class EditBoard extends Component {
 
     submitPrevention(e) {
         e.preventDefault();
-        this.props.submitEditInfo(this.state.editTitle, this.state.editSubtitle);
+        this.props.submitEditInfo(this.state.editFirstItem, this.state.editSecondItem, this.props.itemToEdit);
     }
 
     render() {
-
+        
         return (
             <div className="editModalBackground" onClick={this.props.closeEditBoard}>
                 <div className="editModalBoardArea" onClick={e => e.stopPropagation()}>
                     <h2>Edit board display</h2>
                     <form onSubmit={(e) => this.submitPrevention(e)}>
                         <div>
-                            <label htmlFor="editTitle" className='modalLabel'>Title</label>
-                            <input type="text" value={this.state.editTitle} onChange={(e) => this.handleInputChange(e)} name='editTitle' />
+                            <label htmlFor="editFirstItem" className='modalLabel'>{this.props.itemToEdit === 'room' ? 'Background Link' : 'Title'}</label>
+                            <input type="text" value={this.state.editFirstItem} onChange={(e) => this.handleInputChange(e)} name='editFirstItem' />
                         </div>
                         <div>
-                            <label htmlFor="editSubtitle" className='modalLabel'>Subtitle</label>
-                            <input type="text" value={this.state.editSubtitle} onChange={(e) => this.handleInputChange(e)} name='editSubtitle' />
+                            <label htmlFor="editSecondItem" className='modalLabel'>{this.props.itemToEdit === 'room' ? 'Video Link' : 'Subtitle'}</label>
+                            <input type="text" value={this.state.editSecondItem} onChange={(e) => this.handleInputChange(e)} name='editSecondItem' />
                         </div>
                         <div className="modalBoardButtons">
                             <button onClick={this.props.closeEditBoard}>Cancel</button>
