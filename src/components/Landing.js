@@ -81,6 +81,11 @@ class Landing extends Component {
                             title: 'Pacific Life',
                             subtitle: 'Team Building Day!'
                         }
+                    },
+                    is_room: false,
+                    room_options: {
+                        background: "https://i.pinimg.com/originals/b4/25/80/b42580335dda2ec9b66f645697a1e529.jpg",
+                        video: "https://www.youtube.com/embed/4o5baMYWdtQ"
                     }
                 },
                 Room: {
@@ -93,6 +98,11 @@ class Landing extends Component {
                             title: 'Pacific Life',
                             subtitle: 'Team Building Day!'
                         }
+                    },
+                    is_room: true,
+                    room_options: {
+                        background: "https://i.pinimg.com/originals/b4/25/80/b42580335dda2ec9b66f645697a1e529.jpg",
+                        video: "https://www.youtube.com/embed/4o5baMYWdtQ"
                     }
                 }
             }
