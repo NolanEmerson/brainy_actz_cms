@@ -128,6 +128,9 @@ class Location extends Component {
                 returnValue = 'Multi board'
                 // <Multi location={this.props.match.params.location} />
                 break;
+            case 'transition':
+                returnValue = 'Transition board'
+                break;
             default:
                 returnValue = 'No current display'
         }

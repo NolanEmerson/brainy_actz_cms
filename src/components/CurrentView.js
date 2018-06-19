@@ -7,6 +7,7 @@ import Blue from './boards/Blue';
 import Text from './boards/Text';
 import Room from './boards/Room';
 import Multi from './boards/Multi';
+import Transition from './boards/Transition';
 
 class CurrentView extends Component {
     constructor(props){
@@ -52,6 +53,9 @@ class CurrentView extends Component {
                     break;
                 case 'multi':
                     returnValue = <Multi location={this.props.match.params.location} />
+                    break;
+                case 'transition':
+                    returnValue = <Transition location={this.props.match.params.location} screen={this.props.match.params.screen}/>
                     break;
                 default:
                     returnValue = 'something broke'
