@@ -94,12 +94,21 @@
 .nextDisplay {
     height: 100%;
     width: 100%;
-    background-color: hotpink;
     position: absolute;
     top: 0;
     right: 0;
     pointer-events: none;
-    transition: opacity .5s ease-in-out;
-    -moz-transition: opacity .5s ease-in-out;
-    -webkit-transition: opacity .5s ease-in-out;
+    animation: fadeIn 1s ease-in-out;
+    /* transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -webkit-transition: opacity 1s ease-in-out; */
+}
+
+@keyframes fadeIn {
+    0% {
+    opacity:0
+    }
+    100% {
+    opacity:1;
+    }
 }
