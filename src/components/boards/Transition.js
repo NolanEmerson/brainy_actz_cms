@@ -18,7 +18,10 @@ class Transition extends Component {
             baseLink: {
                 transition_options: []
             },
-            currentDisplay: 0
+            currentDisplay: 0,
+            transitioning: false,
+            display: 0,
+            display: 'none'
         };
     }
 
@@ -28,7 +31,7 @@ class Transition extends Component {
             state: 'baseLink'
         });
 
-        setInterval(this.updateDisplay, 3000);
+        setInterval(this.updateDisplay, 5000);
     }
 
     componentWillUnmount() {
@@ -36,29 +39,35 @@ class Transition extends Component {
     }
 
     updateDisplay() {
-        if (this.state.currentDisplay === this.state.baseLink.transition_options.length -1){
-            let currentDisplay = 0;
-            this.setState({
-                currentDisplay
-            });
-        } else {
-            let {currentDisplay} = this.state;
-            currentDisplay = currentDisplay + 1;
-            this.setState({
-                currentDisplay
-            });
-        }
+        this.setState({
+            display: '',
+        });
+
+        setTimeout( () => {
+
+            if (this.state.currentDisplay === this.state.baseLink.transition_options.length -1){
+                let currentDisplay = 0;
+                this.setState({
+                    currentDisplay,
+                    display: 'none',
+                });
+            } else {
+                let {currentDisplay} = this.state;
+                currentDisplay = currentDisplay + 1;
+                this.setState({
+                    currentDisplay,
+                    display: 'none',
+                });
+            }
+
+        }, 1000)
+        
     }
 
-    render() {
-        
-        console.log('Transition state: ', this.state);
-
-        const {transition_options} = this.state.baseLink;
-        const {currentDisplay} = this.state;
+    determineNewDisplay(options, currentChoice) {
 
         let returnValue = '';
-        switch (transition_options[currentDisplay]) {
+        switch (options[currentChoice]) {
             case 'red':
                     returnValue = <Red />;
                     break;
@@ -72,10 +81,27 @@ class Transition extends Component {
                     returnValue = 'No current value'
         }
 
+        return returnValue;
+    }
+
+    render() {
+
+        const {transition_options} = this.state.baseLink;
+        const {currentDisplay} = this.state;
+        let nextDisplay = null;
+        if (currentDisplay === transition_options.length -1) {
+            nextDisplay = 0;
+        } else {
+            nextDisplay = currentDisplay + 1;
+        }
+
         return (
-            <React.Fragment>
-                {returnValue}
-            </React.Fragment>
+            <div className='transitionBoard'>
+                {this.determineNewDisplay(transition_options, currentDisplay)}
+                <div className="nextDisplay" style={{display: this.state.display}}>
+                    {this.determineNewDisplay(transition_options, nextDisplay)}
+                </div>
+            </div>
         );
     }
 }
