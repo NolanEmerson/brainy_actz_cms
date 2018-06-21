@@ -3,6 +3,7 @@ import base from '../base';
 
 import Header from './Header';
 import EditBoard from './EditBoard';
+import EditTransition from './EditTransition';
 
 class Location extends Component {
     constructor(props){
@@ -22,7 +23,8 @@ class Location extends Component {
                 editFirstItem: '',
                 editSecondItem: ''
             },
-            itemToEdit: ''
+            itemToEdit: '',
+            editTransition: false
         }
     }
 
@@ -104,6 +106,14 @@ class Location extends Component {
         });
     }
 
+    openTransitionBoard(e) {
+        e.stopPropagation();
+
+        this.setState({
+            editTransition: true
+        });
+    }
+
     determineThumbnail(current) {
         let returnValue;
         switch (current){
@@ -151,6 +161,7 @@ class Location extends Component {
                             <h1>{this.determineThumbnail(item)}</h1>
                         </div>
                         {item === 'text' || item === 'room' ? <div className="boardEditButton" onClick={e => this.openEditBoard(e, item)}><i className='fas fa-pencil-alt'></i></div> : ''}
+                        {item === 'transition' ? <div className='boardEditButton' onClick={(e) => this.openTransitionBoard(e)}><i className='fas fa-pencil-alt'></i></div> : ''}
                     </div>
                 )
             });
@@ -159,6 +170,7 @@ class Location extends Component {
         return (
             <React.Fragment>
                 {this.state.editBoard && <EditBoard closeEditBoard={this.closeEditBoard.bind(this)} editInfo={this.state.editInfo} submitEditInfo={this.submitEditInfo} itemToEdit={this.state.itemToEdit} />}
+                {this.state.editTransition && <EditTransition />}
                 <Header location={this.state.baseLink.location_name} tv={this.props.match.params.screen} nav={this.props} />
                 <div className="mainBodyContainer">
                     <div>

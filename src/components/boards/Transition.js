@@ -4,9 +4,9 @@ import base from '../../base';
 import Red from './Red';
 import Green from './Green';
 import Blue from './Blue';
-import Text from './Text';
-import Room from './Room';
-import Multi from './Multi';
+// import Text from './Text';
+// import Room from './Room';
+// import Multi from './Multi';
 
 class Transition extends Component {
     constructor(props){
@@ -16,11 +16,13 @@ class Transition extends Component {
 
         this.state = {
             baseLink: {
-                transition_options: []
+                transition_options: {
+                    speed: {},
+                    boards: []
+                }
             },
             currentDisplay: 0,
             transitioning: false,
-            display: 0,
             display: 'none'
         };
     }
@@ -45,7 +47,7 @@ class Transition extends Component {
 
         setTimeout( () => {
 
-            if (this.state.currentDisplay === this.state.baseLink.transition_options.length -1){
+            if (this.state.currentDisplay === this.state.baseLink.transition_options.boards.length -1){
                 let currentDisplay = 0;
                 this.setState({
                     currentDisplay,
@@ -89,7 +91,7 @@ class Transition extends Component {
         const {transition_options} = this.state.baseLink;
         const {currentDisplay} = this.state;
         let nextDisplay = null;
-        if (currentDisplay === transition_options.length -1) {
+        if (currentDisplay === transition_options.boards.length -1) {
             nextDisplay = 0;
         } else {
             nextDisplay = currentDisplay + 1;
@@ -97,9 +99,9 @@ class Transition extends Component {
 
         return (
             <div className='transitionBoard'>
-                {this.determineNewDisplay(transition_options, currentDisplay)}
+                {this.determineNewDisplay(transition_options.boards, currentDisplay)}
                 <div className="nextDisplay" style={{display: this.state.display}}>
-                    {this.determineNewDisplay(transition_options, nextDisplay)}
+                    {this.determineNewDisplay(transition_options.boards, nextDisplay)}
                 </div>
             </div>
         );
