@@ -55,7 +55,7 @@ class CurrentView extends Component {
                     returnValue = <Multi location={this.props.match.params.location} />
                     break;
                 case 'transition':
-                    returnValue = <Transition location={this.props.match.params.location} screen={this.props.match.params.screen}/>
+                    returnValue = <Transition location={this.props.match.params.location} screen={this.props.match.params.screen} speed={this.state.baseLink.walls[`${this.props.match.params.screen}`].transition_options.speed}/>
                     break;
                 default:
                     returnValue = 'something broke'
