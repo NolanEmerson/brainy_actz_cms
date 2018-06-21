@@ -315,10 +315,49 @@ button {
 }
 
 .editModalBoardArea {
-	justify-content: center;
+	justify-content: space-evenly;
 	border: 1px solid rgb(243, 243, 75);
 }
 
 .editModalBoardArea > form input {
 	text-align: center;
+}
+
+.editTransitionBoardOptions {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: center;
+	margin: 20px 0;
+}
+
+.editTransitionBoardOptions > div {
+	height: 35px;
+	width: 50px;
+	color: black;
+	margin: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+.editTransItem {
+	background-color: #dfdfdf;
+}
+
+.editTransItem:hover {
+	background-color: #bebebe;
+}
+
+.editTransItemSelected {
+	height: 35px;
+	width: 50px;
+	background-color: #d8f800;
+	color: black;
+}
+
+.editTransItemSelected:hover {
+	background-color: #c0dd00;
 }

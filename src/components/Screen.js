@@ -114,6 +114,27 @@ class Location extends Component {
         });
     }
 
+    closeTransitionBoard() {
+        this.setState({
+            editTransition: false
+        });
+    }
+
+    submitTransitionEdit(speed, boards) {
+        this.setState({
+            baseLink: {
+                walls: {
+                    [`${this.props.match.params.screen}`]: {
+                        transition_options: {
+                            boards, speed
+                        }
+                    }
+                }
+            },
+            editTransition: false
+        })
+    }
+
     determineThumbnail(current) {
         let returnValue;
         switch (current){
@@ -170,7 +191,7 @@ class Location extends Component {
         return (
             <React.Fragment>
                 {this.state.editBoard && <EditBoard closeEditBoard={this.closeEditBoard.bind(this)} editInfo={this.state.editInfo} submitEditInfo={this.submitEditInfo} itemToEdit={this.state.itemToEdit} />}
-                {this.state.editTransition && <EditTransition />}
+                {this.state.editTransition && <EditTransition closeTransitionBoard={this.closeTransitionBoard.bind(this)} submitTransitionEdit={this.submitTransitionEdit.bind(this)} currentBoards={this.state.baseLink.walls[`${this.props.match.params.screen}`].transition_options.boards} speed={this.state.baseLink.walls[`${this.props.match.params.screen}`].transition_options.speed} />}
                 <Header location={this.state.baseLink.location_name} tv={this.props.match.params.screen} nav={this.props} />
                 <div className="mainBodyContainer">
                     <div>
