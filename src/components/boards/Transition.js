@@ -4,9 +4,9 @@ import base from '../../base';
 import Red from './Red';
 import Green from './Green';
 import Blue from './Blue';
-// import Text from './Text';
-// import Room from './Room';
-// import Multi from './Multi';
+import Text from './Text';
+import Room from './Room';
+import Multi from './Multi';
 
 class Transition extends Component {
     constructor(props){
@@ -33,7 +33,9 @@ class Transition extends Component {
             state: 'baseLink'
         });
 
-        setInterval(this.updateDisplay, 5000);
+        console.log(this.state);
+
+        setInterval(this.updateDisplay, `${this.props.speed}000`);
     }
 
     componentWillUnmount() {
@@ -79,6 +81,15 @@ class Transition extends Component {
                 case 'blue':
                     returnValue =  <Blue />
                     break;
+                case 'text':
+                    returnValue = <Text title={this.state.baseLink.display_text.text.title} subtitle={this.state.baseLink.display_text.text.subtitle} />
+                    break;
+                case 'room':
+                    returnValue = <Room title={this.props.screen} location={this.props.location} />
+                    break;
+                case 'multi':
+                    returnValue = <Multi location={this.props.location} />
+                    break;
                 default:
                     returnValue = 'No current value'
         }
@@ -87,6 +98,9 @@ class Transition extends Component {
     }
 
     render() {
+
+        // console.log('Trans props: ', this.props);
+        // console.log('Trans state: ', this.state);
 
         const {transition_options} = this.state.baseLink;
         const {currentDisplay} = this.state;

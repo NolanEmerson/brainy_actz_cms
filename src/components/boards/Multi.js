@@ -66,7 +66,6 @@ class Multi extends Component{
             }
 
             const mappedDisplay = screensToDisplay.map((item, index) => {
-                console.log(this.state.baseLink.walls);
                 return (
                     <div className='multiHolder' style={{backgroundImage: `url(${this.state.baseLink.walls[`${item}`].room_options.background})`, backgroundSize: 'cover'}} onClick={() => this.toggleModal(this.props.location, item)} key={index}>
                         <div>{item}</div>
