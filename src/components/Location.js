@@ -77,8 +77,10 @@ class Location extends Component {
         });
     }
 
-    submitEditInfo(location, newScreen, originalScreen) {
+    submitEditInfo(location, newScreen, originalScreen, isRoom) {
         const newState = {...this.state};
+
+        newState.baseLink.walls[`${originalScreen}`].is_room = isRoom;
 
         if(originalScreen !== newScreen){
             Object.defineProperty(newState.baseLink.walls, newScreen,
@@ -191,7 +193,7 @@ class Location extends Component {
         return (
             <React.Fragment>
                 {this.state.deleteModal && <DeleteModal closeDeleteModal={this.closeDeleteModal.bind(this)} displayItem={this.state.deleteInfo.screen} itemToDelete={this.state.deleteInfo.location} deleteItem={this.deleteInfo.bind(this)} />}
-                {this.state.editModal && <EditModal closeEditModal={this.closeEditModal.bind(this)} editInfo={this.state.editInfo.screen} submitEditInfo={this.submitEditInfo.bind(this)} location={this.state.editInfo.location} />}
+                {this.state.editModal && <EditModal closeEditModal={this.closeEditModal.bind(this)} editInfo={this.state.editInfo.screen} submitEditInfo={this.submitEditInfo.bind(this)} location={this.state.editInfo.location} isRoom={this.state.baseLink.walls[`${this.state.editInfo.screen}`].is_room} wallboard={true} />}
                 <Header location={this.state.baseLink.location_name} nav={this.props} />
                 <div className="mainBodyFlexContainer">
                     {wallMap}
