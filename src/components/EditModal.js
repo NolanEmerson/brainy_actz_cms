@@ -5,16 +5,19 @@ class EditModal extends Component {
         super(props);
     
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.toggleRoom = this.toggleRoom.bind(this);
 
         this.state = {
-            editInfo: ''
+            editInfo: '',
+            isRoom: false
         }
     }
 
     componentDidMount() {
-        const {editInfo} = this.props;
+        const {editInfo, isRoom} = this.props;
         this.setState({
-            editInfo
+            editInfo,
+            isRoom
         });
     }
 
@@ -24,15 +27,28 @@ class EditModal extends Component {
         });
     }
 
+    toggleRoom() {
+        this.setState({
+            isRoom: !this.state.isRoom
+        });
+    }
+
     render() {
+
+        console.log('Edit modal props: ', this.props);
+
         return (
             <div className="editModalBackground" onClick={this.props.closeEditModal}>
                 <div className="editModalArea" onClick={e => e.stopPropagation()}>
                     <h2>Edit information</h2>
                     <input type="text" value={this.state.editInfo} onChange={this.handleInputChange} ></input>
+                    {this.props.wallboard && <div>
+                        <label htmlFor="roomCheck">Is this in an escape room?</label>
+                        <input type="checkbox" className="roomCheck" checked={this.state.isRoom} onChange={this.toggleRoom}/>
+                    </div>}
                     <div className="modalButtons">
                         <button onClick={this.props.closeEditModal}>Cancel</button>
-                        <button onClick={() => this.props.submitEditInfo(this.props.location, this.state.editInfo, this.props.editInfo)} className='modalSubmitButton'>Submit</button>
+                        <button onClick={() => this.props.submitEditInfo(this.props.location, this.state.editInfo, this.props.editInfo, this.state.isRoom)} className='modalSubmitButton'>Submit</button>
                     </div>
                 </div>
             </div>

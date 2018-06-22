@@ -33,8 +33,6 @@ class Transition extends Component {
             state: 'baseLink'
         });
 
-        console.log(this.state);
-
         setInterval(this.updateDisplay, `${this.props.speed}000`);
     }
 
