@@ -26,7 +26,7 @@ class AddBoard extends Component {
     }
 
     checkBoardOptions(array = ['']) {
-        let unusedOptions = ['red', 'green', 'blue', 'text', 'room', 'multi', 'transition'];
+        let unusedOptions = ['red', 'green', 'blue', 'text', 'room', 'multi', 'transition', 'teaser'];
 
         for (let i=0; i<array.length; i++) {
             if (unusedOptions.indexOf(array[i]) !== -1) {
@@ -86,6 +86,9 @@ class AddBoard extends Component {
                 break;
             case 'transition':
                 returnValue = 'Transition board'
+                break;
+            case 'teaser':
+                returnValue = 'Teaser board'
                 break;
             default:
                 returnValue = 'No current display'
