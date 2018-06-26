@@ -8,6 +8,7 @@ import Text from './boards/Text';
 import Room from './boards/Room';
 import Multi from './boards/Multi';
 import Transition from './boards/Transition';
+import Teaser from './boards/Teaser';
 
 class CurrentView extends Component {
     constructor(props){
@@ -56,6 +57,9 @@ class CurrentView extends Component {
                     break;
                 case 'transition':
                     returnValue = <Transition location={this.props.match.params.location} screen={this.props.match.params.screen} speed={this.state.baseLink.walls[`${this.props.match.params.screen}`].transition_options.speed}/>
+                    break;
+                case 'teaser':
+                    returnValue = <Teaser />
                     break;
                 default:
                     returnValue = 'something broke'

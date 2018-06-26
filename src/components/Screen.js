@@ -162,6 +162,9 @@ class Location extends Component {
             case 'transition':
                 returnValue = 'Transition board'
                 break;
+            case 'teaser':
+                returnValue = 'Teaser board'
+                break;
             default:
                 returnValue = 'No current display'
         }
