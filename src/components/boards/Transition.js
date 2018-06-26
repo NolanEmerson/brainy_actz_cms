@@ -97,9 +97,6 @@ class Transition extends Component {
 
     render() {
 
-        // console.log('Trans props: ', this.props);
-        // console.log('Trans state: ', this.state);
-
         const {transition_options} = this.state.baseLink;
         const {currentDisplay} = this.state;
         let nextDisplay = null;
