@@ -35,8 +35,6 @@ class EditModal extends Component {
 
     render() {
 
-        console.log('Edit modal props: ', this.props);
-
         return (
             <div className="editModalBackground" onClick={this.props.closeEditModal}>
                 <div className="editModalArea" onClick={e => e.stopPropagation()}>
