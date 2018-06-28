@@ -37,15 +37,18 @@ class Teaser extends Component {
         }
 
         const wallMap = roomKeys.map((item, index) => {
-            return <div key={index}>{item}</div>
+            return (
+                <div key={index} style={{backgroundImage: `url(${this.state.baseLink.walls[`${item}`].room_options.background})`}}>
+                    <div>{item}</div>
+                    <div>{this.state.baseLink.walls[`${item}`].description}</div>
+                </div>
+            );
         });
         
         return (
             <div className='roomBoard'
             // style={{backgroundImage: `url(${this.state.baseLink.room_options.background})`}}
             >
-                <h2>{this.props.title}</h2>
-                <h2>wip</h2>
                 {wallMap}
             </div>
         );
