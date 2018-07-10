@@ -8,6 +8,7 @@
     background-color: white;
     color: black;
     text-align: center;
+    position: relative;
 }
 
 .textBoard {
@@ -36,6 +37,7 @@
 .roomBoard {
     background-position: center;
     background-size: cover;
+    overflow: hidden;
 }
 
 .roomBoard > * {
@@ -116,4 +118,25 @@
 .teaserItem {
     width: 100%;
     height: 100%;
+    position: relative;
+    transition: left .75s ease;
+}
+
+.leftItem {
+    left: -100%;
+    position: absolute;
+}
+
+.currentItem {
+    left: 0;
+}
+
+.rightItem {
+    left: 100%;
+    position: absolute;
+}
+
+.hide {
+    opacity: 0;
+    pointer-events: none;
 }
