@@ -77,13 +77,31 @@ class Teaser extends Component {
         
     }
 
+    setRotationClass(index) {
+
+        const {currentDisplay} = this.state;
+        const lastRoom = this.state.roomsToDisplay.length -1;
+
+        if (index === currentDisplay) {
+            return 'currentItem'
+        } else if (currentDisplay === lastRoom && index === 0) {
+            return 'rightItem hide'
+        } else if (currentDisplay === 0 && index === lastRoom) {
+            return 'leftItem'
+        } else if (index > currentDisplay) {
+            return 'rightItem hide'
+        } else if (index < currentDisplay) {
+            return 'leftItem'
+        }
+    }
+
     render() {
 
         console.log('Teaser state: ', this.state);
 
         const wallMap = this.state.roomsToDisplay.map((item, index) => {
             return (
-                <div key={index} className='teaserItem' style={{backgroundImage: `url(${this.state.baseLink.walls[`${item}`].room_options.background})`}}>
+                <div key={index} className={`teaserItem ${this.setRotationClass(index)}`} style={{backgroundImage: `url(${this.state.baseLink.walls[`${item}`].room_options.background})`}}>
                     <div>{item}</div>
                     <div>{this.state.baseLink.walls[`${item}`].description}</div>
                 </div>
@@ -94,7 +112,8 @@ class Teaser extends Component {
             <div className='roomBoard'
             // style={{backgroundImage: `url(${this.state.baseLink.room_options.background})`}}
             >
-                {wallMap[this.state.currentDisplay]}
+                {/* {wallMap[this.state.currentDisplay]} */}
+                {wallMap}
             </div>
         );
     }
