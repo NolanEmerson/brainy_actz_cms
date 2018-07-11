@@ -66,10 +66,10 @@ class Transition extends Component {
         
     }
 
-    determineNewDisplay(options, currentChoice) {
+    determineNewDisplay(item) {
 
         let returnValue = '';
-        switch (options[currentChoice]) {
+        switch (item) {
             case 'red':
                     returnValue = <Red />;
                     break;
@@ -95,6 +95,24 @@ class Transition extends Component {
         return returnValue;
     }
 
+    setRotationClass(index) {
+
+        const {currentDisplay} = this.state;
+        const lastRoom = this.state.baseLink.transition_options.boards.length -1;
+
+        if (index === currentDisplay) {
+            return 'currentItem'
+        } else if (currentDisplay === lastRoom && index === 0) {
+            return 'rightItem hide'
+        } else if (currentDisplay === 0 && index === lastRoom) {
+            return 'leftItem'
+        } else if (index > currentDisplay) {
+            return 'rightItem hide'
+        } else if (index < currentDisplay) {
+            return 'leftItem'
+        }
+    }
+
     render() {
 
         const {transition_options} = this.state.baseLink;
@@ -106,12 +124,22 @@ class Transition extends Component {
             nextDisplay = currentDisplay + 1;
         }
 
+        const wallMap = transition_options.boards.map((item, index) => {
+
+            return (
+                <div className={`transitionItem ${this.setRotationClass(index)}`}>
+                    {this.determineNewDisplay(item)}
+                </div>
+            )
+        });
+
         return (
             <div className='transitionBoard'>
-                {this.determineNewDisplay(transition_options.boards, currentDisplay)}
+                {wallMap}
+                {/* {this.determineNewDisplay(transition_options.boards, currentDisplay)}
                 <div className="nextDisplay" style={{display: this.state.display}}>
                     {this.determineNewDisplay(transition_options.boards, nextDisplay)}
-                </div>
+                </div> */}
             </div>
         );
     }
