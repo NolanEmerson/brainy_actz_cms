@@ -100,12 +100,16 @@ class Transition extends Component {
         const {currentDisplay} = this.state;
         const lastRoom = this.state.baseLink.transition_options.boards.length -1;
 
+        if (currentDisplay === 0 && index === lastRoom) {
+            console.log('This is the problem point', index, lastRoom);
+        }
+
         if (index === currentDisplay) {
             return 'currentItem'
-        } else if (currentDisplay === 0 && index === lastRoom) {
-            return 'leftItem'
         } else if (currentDisplay === lastRoom && index === 0) {
             return 'rightItem hide'
+        } else if (currentDisplay === 0 && index === lastRoom) {
+            return 'leftItem'
         } else if (index > currentDisplay) {
             return 'rightItem hide'
         } else if (index < currentDisplay) {
@@ -116,18 +120,20 @@ class Transition extends Component {
     render() {
 
         const {transition_options} = this.state.baseLink;
-        const {currentDisplay} = this.state;
-        let nextDisplay = null;
-        if (currentDisplay === transition_options.boards.length -1) {
-            nextDisplay = 0;
-        } else {
-            nextDisplay = currentDisplay + 1;
-        }
+
+        // const {currentDisplay} = this.state;
+
+        // let nextDisplay = null;
+        // if (currentDisplay === transition_options.boards.length -1) {
+        //     nextDisplay = 0;
+        // } else {
+        //     nextDisplay = currentDisplay + 1;
+        // }
 
         const wallMap = transition_options.boards.map((item, index) => {
 
             return (
-                <div className={`transitionItem ${this.setRotationClass(index)}`}>
+                <div key={index} className={`transitionItem ${this.setRotationClass(index)}`}>
                     {this.determineNewDisplay(item)}
                 </div>
             );
