@@ -97,8 +97,6 @@ class Teaser extends Component {
 
     render() {
 
-        console.log('Teaser state: ', this.state);
-
         const wallMap = this.state.roomsToDisplay.map((item, index) => {
             return (
                 <div key={index} className={`teaserItem ${this.setRotationClass(index)}`} style={{backgroundImage: `url(${this.state.baseLink.walls[`${item}`].room_options.background})`}}>
