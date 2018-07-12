@@ -102,10 +102,10 @@ class Transition extends Component {
 
         if (index === currentDisplay) {
             return 'currentItem'
-        } else if (currentDisplay === lastRoom && index === 0) {
-            return 'rightItem hide'
         } else if (currentDisplay === 0 && index === lastRoom) {
             return 'leftItem'
+        } else if (currentDisplay === lastRoom && index === 0) {
+            return 'rightItem hide'
         } else if (index > currentDisplay) {
             return 'rightItem hide'
         } else if (index < currentDisplay) {
@@ -130,7 +130,7 @@ class Transition extends Component {
                 <div className={`transitionItem ${this.setRotationClass(index)}`}>
                     {this.determineNewDisplay(item)}
                 </div>
-            )
+            );
         });
 
         return (
