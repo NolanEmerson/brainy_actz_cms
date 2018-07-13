@@ -9,6 +9,8 @@ class Teaser extends Component {
         this.retrieveDisplayRooms = this.retrieveDisplayRooms.bind(this);
         this.beginTimer = this.beginTimer.bind(this);
 
+        this.timer = null;
+
         this.state = {
             baseLink: {
                 walls: {}
@@ -32,12 +34,20 @@ class Teaser extends Component {
         this.setState({
             roomsToDisplay: this.retrieveDisplayRooms()
         }, () => {
-            setInterval(this.updateDisplayCount, 5000);
+            this.timer = setInterval(this.updateDisplayCount, `${this.props.speed}000`);
         });
     }
 
     componentWillUnmount() {
         base.removeBinding(this.ref);
+    }
+
+    componentWillReceiveProps() {
+        console.log('doin it');
+
+        clearInterval(this.timer);
+
+        this.timer = setInterval(this.updateDisplayCount, `${this.props.speed}000`);
     }
 
     updateDisplayCount() {
@@ -105,6 +115,8 @@ class Teaser extends Component {
                 </div>
             );
         });
+
+        console.log('Speed:', this.props.speed);
         
         return (
             <div className='roomBoard'
