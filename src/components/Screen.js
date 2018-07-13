@@ -4,6 +4,7 @@ import base from '../base';
 import Header from './Header';
 import EditBoard from './EditBoard';
 import EditTransition from './EditTransition';
+import EditTeaser from './EditTeaser';
 
 class Location extends Component {
     constructor(props){
@@ -24,7 +25,8 @@ class Location extends Component {
                 editSecondItem: ''
             },
             itemToEdit: '',
-            editTransition: false
+            editTransition: false,
+            editTeaser: false
         }
     }
 
@@ -135,6 +137,34 @@ class Location extends Component {
         })
     }
 
+    openTeaserBoard(e) {
+        e.stopPropagation();
+
+        this.setState({
+            editTeaser: true
+        });
+    }
+
+    closeTeaserBoard() {
+        this.setState({
+            editTeaser: false
+        });
+    }
+
+    submitTeaserEdit(newSpeed) {
+        // baseLink.walls[`${this.props.match.params.screen}`]
+        this.setState({
+            baseLink: {
+                walls: {
+                    [`${this.props.match.params.screen}`]: {
+                        teaser_speed: newSpeed
+                    }
+                }
+            },
+            editTeaser: false
+        });
+    }
+
     determineThumbnail(current) {
         let returnValue;
         switch (current){
@@ -186,6 +216,7 @@ class Location extends Component {
                         </div>
                         {item === 'text' || item === 'room' ? <div className="boardEditButton" onClick={e => this.openEditBoard(e, item)}><i className='fas fa-pencil-alt'></i></div> : ''}
                         {item === 'transition' ? <div className='boardEditButton' onClick={(e) => this.openTransitionBoard(e)}><i className='fas fa-pencil-alt'></i></div> : ''}
+                        {item === 'teaser' ? <div className='boardEditButton' onClick={(e) => this.openTeaserBoard(e)}><i className='fas fa-pencil-alt'></i></div> : ''}
                     </div>
                 )
             });
@@ -195,6 +226,7 @@ class Location extends Component {
             <React.Fragment>
                 {this.state.editBoard && <EditBoard closeEditBoard={this.closeEditBoard.bind(this)} editInfo={this.state.editInfo} submitEditInfo={this.submitEditInfo} itemToEdit={this.state.itemToEdit} />}
                 {this.state.editTransition && <EditTransition closeTransitionBoard={this.closeTransitionBoard.bind(this)} submitTransitionEdit={this.submitTransitionEdit.bind(this)} currentBoards={this.state.baseLink.walls[`${this.props.match.params.screen}`].transition_options.boards} speed={this.state.baseLink.walls[`${this.props.match.params.screen}`].transition_options.speed} />}
+                {this.state.editTeaser && <EditTeaser closeTeaserBoard={this.closeTeaserBoard.bind(this)} submitTeaserEdit={this.submitTeaserEdit.bind(this)} speed={this.state.baseLink.walls[`${this.props.match.params.screen}`].teaser_speed} />}
                 <Header location={this.state.baseLink.location_name} tv={this.props.match.params.screen} nav={this.props} />
                 <div className="mainBodyContainer">
                     <div>
@@ -204,6 +236,8 @@ class Location extends Component {
                                 <h1>{this.determineThumbnail(current_view)}</h1>
                             </div>
                             {current_view === 'text' || current_view === 'room' ? <div className="boardEditButton" onClick={e => this.openEditBoard(e, current_view)}><i className='fas fa-pencil-alt'></i></div> : ''}
+                            {current_view === 'transition' ? <div className='boardEditButton' onClick={(e) => this.openTransitionBoard(e)}><i className='fas fa-pencil-alt'></i></div> : ''}
+                            {current_view === 'teaser' ? <div className='boardEditButton' onClick={(e) => this.openTeaserBoard(e)}><i className='fas fa-pencil-alt'></i></div> : ''}
                         </div>
                     </div>
                     {options && <div>
