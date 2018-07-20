@@ -231,18 +231,22 @@ class Location extends Component {
                 <div className="mainBodyContainer">
                     <div>
                         Current View: <br />
-                        <div className="boardViewItem" onClick={this.moveToLocation}>
-                            <div className="boardViewThumb">
-                                <h1>{this.determineThumbnail(current_view)}</h1>
+                        <div className='optionsFlexArea'>
+                            <div className="boardViewItem" onClick={this.moveToLocation}>
+                                <div className="boardViewThumb">
+                                    <h1>{this.determineThumbnail(current_view)}</h1>
+                                </div>
+                                {current_view === 'text' || current_view === 'room' ? <div className="boardEditButton" onClick={e => this.openEditBoard(e, current_view)}><i className='fas fa-pencil-alt'></i></div> : ''}
+                                {current_view === 'transition' ? <div className='boardEditButton' onClick={(e) => this.openTransitionBoard(e)}><i className='fas fa-pencil-alt'></i></div> : ''}
+                                {current_view === 'teaser' ? <div className='boardEditButton' onClick={(e) => this.openTeaserBoard(e)}><i className='fas fa-pencil-alt'></i></div> : ''}
                             </div>
-                            {current_view === 'text' || current_view === 'room' ? <div className="boardEditButton" onClick={e => this.openEditBoard(e, current_view)}><i className='fas fa-pencil-alt'></i></div> : ''}
-                            {current_view === 'transition' ? <div className='boardEditButton' onClick={(e) => this.openTransitionBoard(e)}><i className='fas fa-pencil-alt'></i></div> : ''}
-                            {current_view === 'teaser' ? <div className='boardEditButton' onClick={(e) => this.openTeaserBoard(e)}><i className='fas fa-pencil-alt'></i></div> : ''}
                         </div>
                     </div>
                     {options && <div>
                         Change current view:<br />
-                        {optionsMap}
+                        <div className='optionsFlexArea'>
+                            {optionsMap}
+                        </div>
                     </div>}
                     <button onClick={this.addNewScreen}>Add new screen options</button>
                 </div>
